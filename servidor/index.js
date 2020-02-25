@@ -9,8 +9,8 @@ connectDB();
 app.use(cors());
 app.use( express.json({ extended: true }));
 
-// Importar rutas
 app.use('/api/users',require('./routes/users'));
+app.use('/api/auth', require('./routes/auth'));
 
 const port = process.env.PORT || 4000;
 
