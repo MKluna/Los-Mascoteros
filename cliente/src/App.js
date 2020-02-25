@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import NuevaCuenta from "./components/auth/NuevaCuenta";
+
+
 
 function App() {
+  // console.log(process.env.REACT_APP_BACKEND_URL);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+            <Router>
+              {/* <Header/> */}
+              <Switch>
+                <Route exact path="/" component={Login} />
+
+                <Route exact path="/nueva-cuenta" component={NuevaCuenta} />
+
+              </Switch>
+            </Router>    
   );
 }
-
 export default App;
+
