@@ -2,6 +2,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NuevaCuenta from "./components/auth/NuevaCuenta";
+import Login from "./components/auth/login";
 
 
 
@@ -11,7 +12,7 @@ function App() {
             <Router>
               {/* <Header/> */}
               <Switch>
-                <Route exact path="/" component={Login} />
+                <Route exact path="/login" component={Login} />
 
                 <Route exact path="/nueva-cuenta" component={NuevaCuenta} />
 
