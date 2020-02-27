@@ -11,7 +11,7 @@ const connectDB = async () => {
         });
         console.log('DB Connect');
     } catch (error) {
-        console.log(error);
+        console.log('Hay un error',error);
         process.exit(1);
     }
 };
