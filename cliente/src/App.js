@@ -5,6 +5,8 @@ import NewAccount from "./components/auth/NewAccount";
 import Login from "./components/auth/login";
 import AlertState from './context/alert/alertState';
 import AuthState from "./context/authentication/authState";
+import Inicio from './components/inicio/inicio';
+import Header from "./components/layout/header";
 
 
 
@@ -16,7 +18,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Inicio} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/nueva-cuenta" component={NuevaCuenta} />
+        <Route exact path="/nueva-cuenta" component={NewAccount} />
       </Switch>
     </Router>
   );
