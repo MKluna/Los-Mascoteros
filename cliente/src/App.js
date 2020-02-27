@@ -10,12 +10,11 @@ import AuthState from "./context/authentication/authState";
 
 
 function App() {
-  console.log(process.env.REACT_APP_BACKEND_URL);
+  // console.log(process.env.REACT_APP_BACKEND_URL);
   return (
             <AlertState> 
               <AuthState>
             <Router>
-              {/* <Header/> */}
               <Switch>
                 <Route exact path="/login" component={Login} />
 

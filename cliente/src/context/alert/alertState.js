@@ -7,7 +7,7 @@ import { SHOW_ALERT,
 
    const AlertState = props =>{
     const initialState = {
-        alert: null
+        alerta: null
     }
     const [state,dispatch] = useReducer(alertReducer, initialState);
      
