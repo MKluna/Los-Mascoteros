@@ -18,8 +18,7 @@ const UsersSchema = mongoose.Schema({
         trim: true
     },
     fechaNacimiento:{
-        type:Date,
-        required: true
+        type:Date
     },
     registro:{
         type:Date,
