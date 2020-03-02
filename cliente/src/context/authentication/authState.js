@@ -29,9 +29,9 @@ const AuthState = props =>{
         try {
             const respuesta = await clienteAxios.post('/api/users',datos);
             console.log(respuesta);
-            dispacth({
-                type: REGISTRY_SUCCESSFUL
-            })
+            // dispacth({
+            //     type: REGISTRY_SUCCESSFUL
+            // })
             
         } catch (error) {
             console.log(error);
