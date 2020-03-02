@@ -10,8 +10,8 @@ const NewAccount = (props) => {
     const alertContext = useContext(AlertContext);
     const { alerta, showAlert} = alertContext;
     
-    const authContext =useContext(AuthContext);
-    const { registerUser}=authContext;
+    const authContext = useContext(AuthContext);
+    const { registerUser } = authContext;
    
   
 
@@ -62,7 +62,7 @@ const{ name, email, password, confirm } = usuario;
     }
     return (  
         <div className="form-usuario">
-           
+           {alerta ? (<div className={`alerta ${alerta.category}`}>{alerta.msg}</div>): null}   
        <div className="contenedor-form sombra-dark">
             <h1>Obtener una Cuenta</h1>
             <form 
