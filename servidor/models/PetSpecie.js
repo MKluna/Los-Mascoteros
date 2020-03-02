@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-//comentario de prueba
+
 const PetSpecieSchema = mongoose.Schema({
     // Descripcion
     description: {
