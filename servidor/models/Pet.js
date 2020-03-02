@@ -11,7 +11,8 @@ const PetSchema = mongoose.Schema({
     //Especie
     specie: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'PetSpecie'
+        ref: 'PetSpecie',
+        require: false
     },
 
     //Fecha de Nacimiento
