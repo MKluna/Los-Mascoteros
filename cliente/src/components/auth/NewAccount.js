@@ -61,8 +61,11 @@ const{ name, email, password, confirm } = usuario;
         return;
     }
     //Y que los 2 paswswords son iguales 
-    if(password !== confirm){
-        showAlert('Los passwords no son iguales','alerta-error')
+    //dos password sean iguales
+    if (password!==confirm) 
+    {
+      showAlert('Las contraseñas no son iguales','alerta-error');
+      return; 
     }
     //pasarlo al action 
     registerUser({
