@@ -15,13 +15,22 @@ switch(action.type){
             ...state,
             authenticated: true,
             message: null
-        }
+        };
+    case LOGIN_SUCCESSFUL:
+        localStorage.setItem('token', action.payload.token);
+        return {
+            ...state,
+            authenticated: true,
+            message: null,
+            // loading: false
+        };
     case GET_USER:
         return{
             ...state,
             user: action.payload
-        }
+        };
     case LOGIN_ERROR:
+    case LOGOUT:
     case REGISTRY_ERROR:
         localStorage.removeItem('token');
         return{
@@ -29,8 +38,9 @@ switch(action.type){
             token: null,
             authenticated: null,//add
             user: null,//add
-            message: action.payload
-        }
+            message: action.payload,
+            // loading: false
+        };
      default:
          return state;
 
