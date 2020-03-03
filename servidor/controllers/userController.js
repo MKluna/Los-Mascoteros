@@ -10,6 +10,9 @@ exports.createUsers = async (req,res) => {
         return res.status(400).json({errores: errores.array()})
     }
 
+    console.log(req.body);
+    
+
     const {email,password} = req.body;
 
     try {
