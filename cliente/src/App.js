@@ -13,6 +13,7 @@ import Header from "./components/layout/header";
 function App() {
   // console.log(process.env.REACT_APP_BACKEND_URL);
   return (
+<<<<<<< HEAD
             <AlertState> 
               <AuthState>
             <Router>
@@ -25,6 +26,21 @@ function App() {
             </Router>  
             </AuthState>
             </AlertState> 
+=======
+    <AlertState>
+      <AuthState>
+        <Router>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Inicio} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/new-account" component={NewAccount} />
+            {/* <Route exat path="/" component={Inicio} /> */}
+          </Switch>
+        </Router>
+      </AuthState>
+    </AlertState>
+>>>>>>> dcd81b0c8e459034f4104758d4f3c0923cb49bbf
   );
 }
 export default App;
