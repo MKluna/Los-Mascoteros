@@ -28,13 +28,13 @@ const NewAccount = (props) => {
   
 
 const [usuario, guardarUsuario] = useState({
-    nombre:'', 
+    name:'', 
     email:'',
     password:'',
     confirm: '',
 })
 
-const{ nombre, email, password, confirm } = usuario;
+const{ name, email, password, confirm } = usuario;
 
 
     const onchange = e =>{
@@ -48,7 +48,7 @@ const{ nombre, email, password, confirm } = usuario;
         e.preventDefault();
  //Validar que no haya campos vacios 
  if(
-    nombre.trim() === ''|| 
+    name.trim() === ''|| 
     email.trim() === ''||
     password.trim() === ''||
     confirm.trim() === ''){
@@ -66,7 +66,7 @@ const{ nombre, email, password, confirm } = usuario;
     }
     //pasarlo al action 
     registerUser({
-        nombre,
+        name,
         email,
         password
     });
@@ -84,10 +84,10 @@ const{ nombre, email, password, confirm } = usuario;
                      <label htmlFor="nombre">Nombre</label>
                      <input 
                      type="text"//tiene que se rigual htmlFor(eso es para que el usuario le de click label se habilite el imput )
-                     id="nombre"
-                     name="nombre"
+                     id="name"
+                     name="name"
                      placeholder="Tu Nombre"
-                     value={nombre}
+                     value={name}
                      onChange={onchange}
                      />
                  </div>
