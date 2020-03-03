@@ -18,11 +18,19 @@ exports.authenticateUser = async (req, res) => {
         if (!user) {
             return res.status(400).json({ msg:'El usuario no esta registrado' });
         }
+/*----agregado----------------------if (!user)------------------*/
+        //crear el usuario
+        user = new user(req.body);
 
-        const passCorrect = await bcryptjs.compare(password, user.password);
-        if (!passCorrect) {
-            return res.status(400).json({ msg: 'Password Incorrecto' });
-        }
+        //Hashear el pasword
+        const salt = await bcryptjs.genSalt(10);
+        user.password =await bcryptjs.hash(password, salt);
+/*------------------------------------**/
+
+        // const passCorrect = await bcryptjs.compare(password, user.password);
+        // if (!passCorrect) {
+        //     return res.status(400).json({ msg: 'Password Incorrecto' });
+        // }
 
         const payload = {
             user: {
@@ -37,17 +45,30 @@ exports.authenticateUser = async (req, res) => {
 
             res.json({ token });
         });
+
+         
     } catch (error) {
         console.log(error);
     }
 };
 
-exports.authenticatedUser = async (req, res) => {
+// exports.authenticatedUser = async (req, res) => {
+//     try {
+//         const user = await Usuario.findById(req.user.id).select('-password');
+//         res.json({ user });
+//     } catch (error) {
+//         console.log(error);
+//         res.status(500).json({ msg: 'Hubo un error' });
+//     }
+// };
+
+exports.userAuthenticate = async (req, res) => {
     try {
-        const user = await Usuario.findById(req.user.id).select('-password');
+        // const user = await Usuario.findById(req.user.id).select('-password');
+        const user = await User.findById(req.user.id).select('-password');
         res.json({ user });
     } catch (error) {
         console.log(error);
-        res.status(500).json({ msg: 'Hubo un error' });
+        res.status(500).json({ msg: 'Hubo un error'});
     }
 };

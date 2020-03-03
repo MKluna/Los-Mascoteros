@@ -11,8 +11,20 @@ const NewAccount = (props) => {
     const { alerta, showAlert} = alertContext;
     
     const authContext = useContext(AuthContext);
-    const { registerUser } = authContext;
+    const { message , authenticated, registerUser } = authContext;
    
+    //En caso que el usuario se haya autenticado o registrado o sea un registro duplicado
+    useEffect(() =>{
+        if(authenticated){
+            //aqui iria a la plataforma del usuario
+            props.history.push('/');
+        }
+
+        if(message){
+            showAlert(message.msg,message.category);
+        }
+
+    },[message,authenticated, props.history]);
   
 
 const [usuario, guardarUsuario] = useState({

@@ -21,7 +21,7 @@ function App() {
                <Route exact path="/" component={Inicio} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/new-account" component={NewAccount} />
-
+                {/* <Route exat path="/" component={Inicio} /> */}
               </Switch>
             </Router>  
             </AuthState>

@@ -16,10 +16,19 @@ switch(action.type){
             authenticated: true,
             message: null
         }
+    case GET_USER:
+        return{
+            ...state,
+            user: action.payload
+        }
+    case LOGIN_ERROR:
     case REGISTRY_ERROR:
+        localStorage.removeItem('token');
         return{
             ...state,
             token: null,
+            authenticated: null,//add
+            user: null,//add
             message: action.payload
         }
      default:
