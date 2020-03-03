@@ -7,6 +7,4 @@ router.post('/',
 petController.crearMascota
 );
 
-
-
 module.exports = router;
