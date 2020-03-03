@@ -16,7 +16,8 @@ const PetLostSchema = mongoose.Schema({
     // Ubicacion
     ubication: {
         type: String,
-        require: true
+        require: true,
+        trim: true
     },
 
     // + Fotos
@@ -32,11 +33,11 @@ const PetLostSchema = mongoose.Schema({
         trim: true
     },
 
-    //Dueño/s
-    owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    },
+    // // Dueño/s
+    // owner: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'User'
+    // },
     
     //Telefono de contacto
     telefon: {
