@@ -5,8 +5,9 @@ import NewAccount from "./components/auth/NewAccount";
 import Login from "./components/auth/Login";
 import AlertState from './context/alert/alertState';
 import AuthState from "./context/authentication/authState";
-import Inicio from './components/inicio/inicio';
+import inicio from './components/inicio/inicio';
 import Header from "./components/layout/header";
+import InicioApp from './components/inicio/InicioApp'
 
 
 
@@ -18,9 +19,10 @@ function App() {
           <Router>
             <Header/>
             <Switch>
-              <Route exact path="/" component={Inicio} />
+              <Route exact path="/" component={inicio} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/new-account" component={NewAccount} />
+              <Route exact path="/inicio" component={InicioApp}/>
             </Switch>
         </Router>  
       </AuthState>
