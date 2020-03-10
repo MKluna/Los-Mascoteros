@@ -20,7 +20,7 @@ exports.authenticateUser = async (req, res) => {
         }
 /*----agregado----------------------if (!user)------------------*/
         //crear el usuario
-        user = new user(req.body);
+        user = new User(req.body);
 
         //Hashear el pasword
         const salt = await bcryptjs.genSalt(10);

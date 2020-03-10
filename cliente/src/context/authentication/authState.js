@@ -1,10 +1,9 @@
 import React, {useReducer} from 'react';
 import AuthContext from './authContext';
-import AuthReducer from './authReducer'
+import AuthReducer from './authReducer';
 
 import clienteAxios from '../../config/axios';
 import tokenAuth from '../../config/token';
-
 
 import { 
     REGISTRY_SUCCESSFUL,
@@ -13,7 +12,7 @@ import {
     LOGIN_SUCCESSFUL,
     LOGIN_ERROR,
     LOGOUT
-}from '../../types';
+} from '../../types';
 
 
 const AuthState = props =>{
@@ -21,16 +20,17 @@ const AuthState = props =>{
         token: localStorage.getItem('token'),
         authenticated : null,
         user: null,
-        message: null
-    }
+        message: null,
+        // loading: true
+    };
 
-    const [state,dispacth] = useReducer(AuthReducer, initialState);
+    const [state,dispatch] = useReducer(AuthReducer, initialState);
     
     const registerUser = async datos => {
         try {
             const respuesta = await clienteAxios.post('/api/users',datos);
             console.log(respuesta.data);
-            dispacth({
+            dispatch({
                 type: REGISTRY_SUCCESSFUL,
                 payload: respuesta.data
             });
@@ -42,13 +42,13 @@ const AuthState = props =>{
             const alerta = {
                 msg: error.response.data.msg,
                 category:'alerta-error'
-            }
-            dispacth({
+            };
+            dispatch({
                 type: REGISTRY_ERROR,
                 payload: alerta
-            })
+            });
         }
-    }
+    };
     
     //retorna el usuario autenticado
     const userAuthenticate = async () =>{
@@ -60,62 +60,60 @@ const AuthState = props =>{
         try {
             const respuesta = await clienteAxios.get('/api/auth');/*--------------------------------------problem*/
             // console.log(respuesta)
-            dispacth({
+            dispatch({
                 type: GET_USER,
                 payload: respuesta.data.user
             });
             
         } catch (error) {
             console.log(error.response);
-            dispacth({
+            dispatch({
                 type: LOGIN_ERROR
-            })
+            });
         }
-    } 
+    };
 
+    const login = async user => {
+        try {
+            const response = await clienteAxios.post('/api/auth', user);
+            dispatch({
+                type: LOGIN_SUCCESSFUL,
+                payload: response.data
+            });
+            //obtenee el usuario
+            userAuthenticate();
+        } catch (error) {
+            // console.log(error.response.data.msg );
+            const alert = {
+                msg: error.response.data.msg,
+                category: 'alerta-error'
+            }
+            dispatch({
+                type: LOGIN_ERROR,
+                payload: alert
+            });
+        }
+    };
+    
+    const logout = () => {
+        dispatch({
+            type: LOGOUT
+        });
+    };
 
-
-
-
-
-
-//     const iniciarSesion = async datos =>{
-//         try {
-//             const respuesta=await clienteAxios.post('/api/auth',datos);
-//             dispatch({
-//                 type: LOGIN_EXITOSO,
-//                 payload: respuesta.data
-//             });
-//             //obtenee el usuario
-//             usuarioAutenticado();
-//         } catch (error) {
-//            // console.log(error.response.data.msg );
-//       const alert = {
-//           msg: error.response.data.msg,
-//           categoria: 'alerta-error'
-//       }
-//       dispatch({
-//           type: LOGIN_ERROR,
-//           payload: alert
-//       })       
-      
-//         }
-//   }
-  //cierrar la sesion del usuario
-//   const cerrarSesion = () =>{
-//       dispatch({
-//           type: CERRAR_SESION
-//       })
-//   }
     return(
         <AuthContext.Provider
-        value={{
-            token: state.token,
-            authenticated: state.authenticated,
-            user: state.user,
-            message: state.message,
-            registerUser
-        }}
+            value={{
+                token: state.token,
+                authenticated: state.authenticated,
+                user: state.user,
+                message: state.message,
+                // loading: state.loading,
+                registerUser,
+                userAuthenticate,
+                login,
+                logout
+            }}
         >
             {props.children}
         </AuthContext.Provider>
