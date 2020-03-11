@@ -54,7 +54,7 @@ a {
 
 /** BOTONES **/
 .btn {
-  margin-top: 2rem;
+  margin-top: 0.5rem;
   font-family: var(--headingFont);
   padding: 1.5rem;
   font-size: 1.4;
@@ -62,6 +62,8 @@ a {
   border-radius: 0.5rem;
   border: none;
   transition: background-color 0.3s ease;
+  margin-right: 0.5rem;
+  font-size: 1.5rem;
 }
 .btn:hover {
   cursor: pointer;
@@ -138,6 +140,7 @@ aside {
   justify-content: space-between;
   background-color: var(--gris2);
   padding: 4rem;
+  clear: left;
 }
 .nombre-usuario {
   color: var(--blanco);
@@ -334,14 +337,18 @@ aside {
   text-align: center;
   width: 100%;
 }
-@media (min-width:768px) {
+@media screen and (min-width:768px) {
   .alerta {
       width: auto;
       top: 30px;
       right: 10px;
       left: auto;
   }
+  .ancho-sidebar{
+    width: 100%;
+  }
 }
+
 
 .alerta-ok {
   background-color: rgb(109, 211, 109);
@@ -350,4 +357,26 @@ aside {
 .alerta-error {
   background-color: rgb(230, 78, 78);
   color: var(--blanco);
+}
+
+.ancho-imagen{
+  width: 100%;
+}
+
+.ancho-sidebar{
+  display: block;
+  padding: 0.5rem;
+  width: auto;
+}
+
+.header-nav{
+  font-size: 2.5rem;
+  color: white;
+}
+
+.div-nav{
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
 }

@@ -1,8 +1,17 @@
-import React from 'react';
+import React,{Fragment} from 'react';
+import NavBar from '../layout/nav';
+import Sidebar from '../layout/sidebar';
 
 const InicioApp = () => {
     return ( 
-        <h1>Desde Adentro de la App</h1>
+        <Fragment>
+        <div className="contenedor-app">
+            <div className="seccion-principal">
+                <NavBar/>
+                <Sidebar />
+            </div>
+        </div>
+        </Fragment>
      );
 }
  
