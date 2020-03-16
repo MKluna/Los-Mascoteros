@@ -9,6 +9,7 @@ import inicio from './components/inicio/inicio';
 import Header from "./components/layout/header";
 import InicioApp from './components/inicio/InicioApp';
 import NewPet from './components/auth/NewPet';
+import Tarjeta from './components/tarjetas/tarjeta';
 
 
 
@@ -18,13 +19,13 @@ function App() {
     <AlertState> 
       <AuthState>
           <Router>
-            <Header/>
             <Switch>
               <Route exact path="/" component={inicio} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/new-account" component={NewAccount} />
               <Route exact path="/inicio" component={InicioApp}/>
               <Route exact path="/new-pet" component={NewPet}/>
+              <Route exact path="/tarjeta" component={Tarjeta}/>
             </Switch>
         </Router>  
       </AuthState>
