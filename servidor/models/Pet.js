@@ -10,7 +10,9 @@ const PetSchema = mongoose.Schema({
 
     //Especie
     specie: {
-        type: mongoose.Schema.Types.ObjectId,
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: 'PetSpecie',
+        type: String,
         ref: 'PetSpecie',
         require: false
     },

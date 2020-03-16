@@ -4,8 +4,6 @@ import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/authentication/authContext';
 
 
-
-
 const NewAccount = (props) => {
     const alertContext = useContext(AlertContext);
     const { alerta, showAlert} = alertContext;
@@ -37,17 +35,18 @@ const [usuario, guardarUsuario] = useState({
 const{ name, email, password, confirm } = usuario;
 
 
-    const onchange = e =>{
-            guardarUsuario({
-                ...usuario,
-                [e.target.name] : e.target.value
-            })
-    }
+        const onchange = e =>{
+                guardarUsuario({
+                    ...usuario,
+                    [e.target.name] : e.target.value
+                })
+        }
 
-    const onSubmit = e =>{
-        e.preventDefault();
+const onSubmit = e =>{
+    e.preventDefault();
  //Validar que no haya campos vacios 
- if(
+ 
+    if(
     name.trim() === ''|| 
     email.trim() === ''||
     password.trim() === ''||
