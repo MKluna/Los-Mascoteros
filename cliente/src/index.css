@@ -53,6 +53,15 @@ a {
 }
 
 /** BOTONES **/
+.form-select{
+  margin-top: 1rem;
+  padding: 0.5rem;
+}
+
+.form-option{
+  font-size: 1.5rem;
+}
+
 .btn {
   margin-top: 0.5rem;
   font-family: var(--headingFont);
@@ -92,7 +101,7 @@ a {
   background-color: transparent;
 }
 
-@media (min-width: 768px) {
+@media screen and  (min-width: 768px) {
   .contenedor-app {
     display: flex;
     min-height: 100vh;
@@ -337,15 +346,12 @@ aside {
   text-align: center;
   width: 100%;
 }
-@media screen and (min-width:768px) {
+@media (min-width:768px) {
   .alerta {
       width: auto;
       top: 30px;
       right: 10px;
       left: auto;
-  }
-  .ancho-sidebar{
-    width: 100%;
   }
 }
 

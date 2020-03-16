@@ -1,6 +1,6 @@
 import React,{Fragment} from 'react';
 import NavBar from '../layout/nav';
-import Sidebar from '../layout/sidebar';
+import FormularioInicio from '../formulario/formularioInicio'
 
 const InicioApp = () => {
     return ( 
@@ -8,7 +8,12 @@ const InicioApp = () => {
         <div className="contenedor-app">
             <div className="seccion-principal">
                 <NavBar/>
-                <Sidebar />
+                <div className="container mt-5">
+                    <div className="row">
+                        <FormularioInicio />
+                    </div>
+                </div>
+                
             </div>
         </div>
         </Fragment>
