@@ -7,7 +7,8 @@ import AlertState from './context/alert/alertState';
 import AuthState from "./context/authentication/authState";
 import inicio from './components/inicio/inicio';
 import Header from "./components/layout/header";
-import InicioApp from './components/inicio/InicioApp'
+import InicioApp from './components/inicio/InicioApp';
+import NewPet from './components/auth/NewPet';
 
 
 
@@ -23,6 +24,7 @@ function App() {
               <Route exact path="/login" component={Login} />
               <Route exact path="/new-account" component={NewAccount} />
               <Route exact path="/inicio" component={InicioApp}/>
+              <Route exact path="/new-pet" component={NewPet}/>
             </Switch>
         </Router>  
       </AuthState>
