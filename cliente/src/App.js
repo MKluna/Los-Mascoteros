@@ -18,7 +18,6 @@ function App() {
     <AlertState> 
       <AuthState>
           <Router>
-            <Header/>
             <Switch>
               <Route exact path="/" component={inicio} />
               <Route exact path="/login" component={Login} />
