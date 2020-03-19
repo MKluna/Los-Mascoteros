@@ -8,7 +8,7 @@ import AuthState from "./context/authentication/authState";
 import inicio from './components/inicio/inicio';
 import Header from "./components/layout/header";
 import InicioApp from './components/inicio/InicioApp';
-import NewPet from './components/auth/NewPet';
+import NewPet from './components/pets/NewPet';
 import ProfileUser from './components/profile/ProfileUser';
 import Tarjeta from './components/tarjetas/tarjeta';
 

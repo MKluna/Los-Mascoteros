@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
 import AlertContext from '../../context/alert/alertContext';
+import PetContext from '../../context/pets/PetContext';
 
-const NewPet = (props) => {
+const NewPet = () => {
 	const alertContext = useContext(AlertContext);
 	const { alerta, showAlert } = alertContext;
 
@@ -15,19 +16,15 @@ const NewPet = (props) => {
 
 	const onChange = e => {
 		setPet({
-		...pet,
-		[e.target.name] : e.target.value
+			...pet,
+			[e.target.name] : e.target.value
 		});
 	};
 
 	const onSubmit = e => {
 		e.preventDefault();
 		
-		console.log(name, specie, birth);
-		if (
-			name.trim() === ''|| 
-			specie.trim() === ''||
-			birth.trim() === null) {
+		if (name.trim() === ''|| specie.trim() === ''||	birth.trim() === null) {
 			showAlert('Todos los campos son obligatorios','alerta-error');
 			return;
 		}
@@ -41,7 +38,7 @@ const NewPet = (props) => {
 
 	return (
 		<div className="form-usuario">
-			{alerta ? (<div className={`alerta ${alerta.category}`}>{alerta.msg}</div>): null}  
+			{ alerta ? (<div className={`alerta ${alerta.category}`}>{alerta.msg}</div>) : null }  
 			<div className="contenedor-form sombra-dark">
 			<h1>Registrar Mascota</h1>
 				<form
