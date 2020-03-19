@@ -1,6 +1,6 @@
 import React from 'react';
 import Botones from './botones';
-const Header = () => {
+const Tarjeta = () => {
     return (
       <div class="contedor-app align-top">
         <div class="card modal-sm">
@@ -17,4 +17,4 @@ const Header = () => {
     );
 }
 
-export default Header;
+export default Tarjeta;
