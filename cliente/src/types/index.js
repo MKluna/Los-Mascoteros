@@ -9,5 +9,5 @@ export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const LOGOUT = 'LOGOUT'; //cerrar sesion
 
 export const ADD_PET = 'ADD_PET';
-// export const PET_ERROR = 'PET_ERROR';
+export const PET_ERROR = 'PET_ERROR';
 // export const VALIDATE_PET_FORM = 'VALIDATE_PET_FORM';

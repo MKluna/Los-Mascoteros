@@ -1,5 +1,6 @@
 import { 
     ADD_PET,
+    PET_ERROR
 } from '../../types';
 
 export default (state, action) => {
@@ -7,21 +8,14 @@ export default (state, action) => {
         case ADD_PET:
             return {
                 ...state,
-                // proyectos: [...state.proyectos, action.payload],
-                // formulario: false,
-                // errorformulario: false
+                pets: [...state.pets, action.payload],
             };
-        // case VALIDATE_PET_FORM:
-        //     return {
-        //         ...state,
-        //         errorformulario: true
-        //     };
-        // case PET_ERROR:
-        //     return {
-        //         ...state,
-        //         mensaje: action.payload
-        //     };
+        case PET_ERROR:
+            return {
+                ...state,
+                mensaje: action.payload
+            };
         default:
             return state;
     }
-}
+};

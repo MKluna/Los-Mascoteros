@@ -4,53 +4,21 @@ import PetContext from './PetContext';
 import clienteAxios from '../../config/axios';
 import { 
     ADD_PET,
-    PET_ERROR, 
-    VALIDATE_PET_FORM
+    PET_ERROR
 } from '../../types';
 
 const PetState = props => {
     
     const initialState = {
-        proyectos: [],
-        formulario: false,
-        errorformulario: false,
-        proyecto: null,
-        mensaje: null
+        pets: []
     };
 
     const [state, dispatch] = useReducer(PetReducer, initialState);
 
-    // Funciones para el CRUD
-    // const mostrarFormulario = () => {
-    //     dispatch({
-    //         type: FORMULARIO_PROYECTO
-    //     });
-    // };
-
-    // const obtenerProyectos = async () => {
-    //     try {
-
-    //         const resultado = await clienteAxios.get('/api/proyectos');
-
-    //         dispatch({
-    //             type: OBTENER_PROYECTOS,
-    //             payload: resultado.data.proyectos
-    //         });
-    //     } catch (error) {
-    //         const alerta = {
-    //             msg: 'Hubo un error',
-    //             categoria: 'alerta-error'
-    //         };
-    //         dispatch({
-    //             type: PROYECTO_ERROR,
-    //             payload: alerta
-    //         });
-    //     }
-    // };
-
     const addPet = async pet => {
         try {
             const result = await clienteAxios.post('api/pet', pet);
+            console.log(result);
             dispatch({
                 type: ADD_PET,
                 payload: result.data
@@ -67,44 +35,11 @@ const PetState = props => {
         }
     };
 
-    const showError = () => {
-        dispatch({
-            type: VALIDATE_PET_FORM
-        });
-    };
-
-    // // Selecciona el proyecto que el usuario dio click
-    // const proyectoActual = proyectoId => {
-    //     dispatch({
-    //         type: PROYECTO_ACTUAL,
-    //         payload: proyectoId
-    //     });
-    // };
-
-    // const eliminarProyecto = async proyectoId => {
-    //     try {
-    //         await clienteAxios.delete(`api/proyectos/${proyectoId}`);
-    //         dispatch({
-    //             type: ELIMINAR_PROYECTO,
-    //             payload: proyectoId
-    //         });
-    //     } catch (error) {
-    //         const alerta = {
-    //             msg: 'Hubo un error',
-    //             categoria: 'alerta-error'
-    //         };
-    //         dispatch({
-    //             type: PROYECTO_ERROR,
-    //             payload: alerta
-    //         });
-    //     }
-    // };
-    
     return (
         <PetContext.Provider
             value={{
-                addPet,
-                showError
+                pets: state.pets,
+                addPet
             }}
         >
             {props.children}

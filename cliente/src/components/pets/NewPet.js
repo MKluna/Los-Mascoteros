@@ -3,14 +3,19 @@ import AlertContext from '../../context/alert/alertContext';
 import PetContext from '../../context/pets/PetContext';
 
 const NewPet = () => {
-	const alertContext = useContext(AlertContext);
-	const { alerta, showAlert } = alertContext;
-
-	const [pet, setPet] = useState({
+	const initialState = {
 		name:'', 
 		specie:'',
 		birth: new Date()
-	});
+	};
+
+	const alertContext = useContext(AlertContext);
+	const { alerta, showAlert } = alertContext;
+
+	const petContext = useContext(PetContext);
+	const { addPet } = petContext;
+
+	const [pet, setPet] = useState(initialState);
 
 	const { name, specie, birth } = pet;
 
@@ -28,12 +33,10 @@ const NewPet = () => {
 			showAlert('Todos los campos son obligatorios','alerta-error');
 			return;
 		}
-		// pasarlo al action 
-		// guardarPet({
-		// name:'', 
-		// specie:'',
-		// birth: ISODate(""),
-		// });
+		
+		addPet(pet);
+
+		setPet(initialState);
 	};
 
 	return (
