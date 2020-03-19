@@ -6,12 +6,8 @@ import Login from "./components/auth/Login";
 import AlertState from './context/alert/alertState';
 import AuthState from "./context/authentication/authState";
 import inicio from './components/inicio/inicio';
-import Header from "./components/layout/header";
 import InicioApp from './components/inicio/InicioApp';
 import NewPet from './components/auth/NewPet';
-import ProfileUser from './components/profile/ProfileUser';
-import Tarjeta from './components/tarjetas/tarjeta';
-
 
 
 function App() {
@@ -26,8 +22,6 @@ function App() {
               <Route exact path="/new-account" component={NewAccount} />
               <Route exact path="/inicio" component={InicioApp}/>
               <Route exact path="/new-pet" component={NewPet}/>
-              <Route exact path="/profile-user" component={ProfileUser}/>
-              <Route exact path="/tarjeta" component={Tarjeta}/>
             </Switch>
         </Router>  
       </AuthState>
