@@ -9,6 +9,7 @@ import inicio from './components/inicio/inicio';
 import PetState from './context/pets/PetState';
 import InicioApp from './components/inicio/InicioApp';
 import NewPet from './components/pets/NewPet';
+import ProfileUser from './components/profile/ProfileUser'
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
                 <Route exact path="/new-account" component={NewAccount} />
                 <Route exact path="/inicio" component={InicioApp}/>
                 <Route exact path="/new-pet" component={NewPet}/>
+                <Route exact path="/profile-user" component={ProfileUser}/>
               </Switch>
           </Router>  
         </AuthState>
