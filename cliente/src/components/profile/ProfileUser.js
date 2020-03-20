@@ -1,6 +1,7 @@
 import React, { Fragment, useContext } from 'react';
 import NavBar from '../layout/nav';
 import Tarjeta from '../tarjetas/tarjeta';
+import {Link} from 'react-router-dom'
 import AuthContext from '../../context/authentication/authContext';
 import '../../profile-user.css';
 
@@ -39,9 +40,9 @@ const ProfileUser = () => {
                     {/* listado de mascotas */}
                     <div className="text-center">
                         <h1>Mis Mascotas</h1>
-                        <a href="#" className="btn-profile btn-agregar"
+                        <Link to={'/new-pet'} className="btn-profile btn-agregar"
                             >+ Agregar Nueva Mascota
-                        </a>
+                        </Link>
                     </div>
                     
                     <div class="card-deck">
