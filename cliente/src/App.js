@@ -6,17 +6,23 @@ import Login from "./components/auth/Login";
 import AlertState from './context/alert/alertState';
 import AuthState from "./context/authentication/authState";
 import inicio from './components/inicio/inicio';
+<<<<<<< HEAD
 import PetState from './context/pets/PetState';
 import InicioApp from './components/inicio/InicioApp';
 import NewPet from './components/pets/NewPet';
 import ProfileUser from './components/profile/ProfileUser';
 import Tarjeta from './components/tarjetas/tarjeta';
 
+=======
+import InicioApp from './components/inicio/InicioApp';
+import NewPet from './components/auth/NewPet';
+>>>>>>> ReartesMatias
 
 
 function App() {
   // console.log(process.env.REACT_APP_BACKEND_URL);
   return (
+<<<<<<< HEAD
     <PetState>
       <AlertState> 
         <AuthState>
@@ -34,6 +40,21 @@ function App() {
         </AuthState>
       </AlertState>
     </PetState>
+=======
+    <AlertState> 
+      <AuthState>
+          <Router>
+            <Switch>
+              <Route exact path="/" component={inicio} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/new-account" component={NewAccount} />
+              <Route exact path="/inicio" component={InicioApp}/>
+              <Route exact path="/new-pet" component={NewPet}/>
+            </Switch>
+        </Router>  
+      </AuthState>
+    </AlertState>
+>>>>>>> ReartesMatias
   );
 }
 export default App;
