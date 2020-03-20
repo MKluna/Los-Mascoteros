@@ -66,6 +66,8 @@ exports.userAuthenticate = async (req, res) => {
     try {
         // const user = await Usuario.findById(req.user.id).select('-password');
         const user = await User.findById(req.user.id).select('-password');
+        console.log('Desde el servidor');
+        console.log(user)
         res.json({ user });
     } catch (error) {
         console.log(error);
