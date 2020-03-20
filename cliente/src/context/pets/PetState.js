@@ -18,7 +18,6 @@ const PetState = props => {
     const addPet = async pet => {
         try {
             const result = await clienteAxios.post('api/pet', pet);
-            console.log(result);
             dispatch({
                 type: ADD_PET,
                 payload: result.data

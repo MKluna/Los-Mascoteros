@@ -9,8 +9,8 @@ exports.addPet = async (req, res) => {
 
     try {
         let pet = new Pet(req.body);
-        //pet.owner = req.usuario.id;
-        console.log(req.user);
+        pet.owner = req.user.id;
+        
         await pet.save();
         
         res.send('Mascota creada');
