@@ -1,13 +1,13 @@
 import React from 'react';
 import Botones from './botones';
-const Header = () => {
+const Tarjeta = () => {
     return (
-      <div class="contedor-app align-top">
-        <div class="card modal-sm">
-          <img src="https://bucket1.glanacion.com/anexos/fotos/02/2749002w380.jpg" class="card-img-top modal-sm" alt="Se Supone que aca va una imagen" />
-          <div class="card-body">
-            <h5 class="card-title">Nombre : Firulais</h5>
-            <p class="card-text">
+      <div className="contedor-app align-top">
+        <div className="card modal-sm">
+          <img src="https://bucket1.glanacion.com/anexos/fotos/02/2749002w380.jpg" className="card-img-top modal-sm" alt="Se Supone que aca va una imagen" />
+          <div className="card-body">
+            <h5 className="card-title">Nombre : Firulais</h5>
+            <p className="card-text">
               Hola Soy Firulais ¿Como Estas?
             </p>
             <Botones/>
@@ -17,4 +17,4 @@ const Header = () => {
     );
 }
 
-export default Header;
+export default Tarjeta;
