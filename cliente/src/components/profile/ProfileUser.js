@@ -1,5 +1,9 @@
 import React, { Fragment, useContext } from 'react';
+
 import AuthContext from '../../context/authentication/authContext';
+import NavBar from '../layout/nav';
+
+
 import '../../profile-user.css';
 
 const ProfileUser = () => {
@@ -10,6 +14,9 @@ const ProfileUser = () => {
     
     return (
         <Fragment>
+          
+          <NavBar />
+
             <div className="imagen-portada">
                 <img src="https://images.wallpapersden.com/image/wxl-bojack-horseman-season-1_68702.jpg"
                     className=""
