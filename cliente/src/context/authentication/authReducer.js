@@ -25,7 +25,6 @@ switch(action.type){
             // loading: false
         };
     case GET_USER:
-        console.log('estoy en el case get user',action.payload)
         return{
             ...state,
             user: action.payload

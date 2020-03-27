@@ -18,14 +18,3 @@ exports.addPet = async (req, res) => {
         res.status(400).send('Hay un error en petcontrooler');
     }
 };
-
-//obtener las mascotas
-exports.getPet = async (req,res)=> {
-    try{
-        const mascotas = await Pet.find({owner: req.user.id});
-        res.json({mascotas});
-    }catch(error){
-        console.log(error);
-        res.status(500).send('Hubo un error')
-    }
-}

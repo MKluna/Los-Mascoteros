@@ -13,10 +13,4 @@ router.post('/',
     petController.addPet
 );
 
-//api/pet
-router.get('/',
-        auth,
-        petController.getPet
-)
-
 module.exports = router;
