@@ -38,6 +38,9 @@ const Inicio = () => {
 
         </Fragment>
     );
+    return ( 
+    <h1>Los Mascoteros </h1>
+     );
 }
 
 export default Inicio;
