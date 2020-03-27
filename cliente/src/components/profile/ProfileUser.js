@@ -4,8 +4,6 @@ import NavBar from '../layout/nav';
 import Tarjeta from '../tarjetas/tarjeta';
 import {Link} from 'react-router-dom'
 import AuthContext from '../../context/authentication/authContext';
-import NavBar from '../layout/nav';
-
 
 import '../../profile-user.css';
 
@@ -20,7 +18,6 @@ const ProfileUser = () => {
           
           <NavBar />
 
-            <NavBar />
             <div className="imagen-portada">
                 <img src="https://images.wallpapersden.com/image/wxl-bojack-horseman-season-1_68702.jpg"
                     className=""
@@ -42,8 +39,9 @@ const ProfileUser = () => {
                         <p>Pequeña descripcion que se yo</p>
                     </div>
                 </div>
-    
-                <div>
+            </div>
+
+            <div className="container text-center">
                     {/* listado de mascotas */}
                     <div className="text-center">
                         <h1>Mis Mascotas</h1>
@@ -52,7 +50,7 @@ const ProfileUser = () => {
                         </Link>
                     </div>
                     
-                    <div class="card-deck">
+                    <div class="card-deck text-center">
                         <Tarjeta /> 
                         <Tarjeta /> 
                         <Tarjeta /> 
@@ -61,7 +59,6 @@ const ProfileUser = () => {
                     </div>
     
                 </div>
-            </div>
 
         </Fragment>
     );
