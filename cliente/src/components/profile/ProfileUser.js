@@ -1,18 +1,28 @@
-import React, { Fragment, useContext } from 'react';
-
+import React, { Fragment, useContext ,useEffect,useState} from 'react';
 import NavBar from '../layout/nav';
 import Tarjeta from '../tarjetas/tarjeta';
 import {Link} from 'react-router-dom'
 import AuthContext from '../../context/authentication/authContext';
 
 import '../../profile-user.css';
+import PetContext from '../../context/pets/PetContext'
 
 const ProfileUser = () => {
 
     // Extraer informacion de Autenticacion
     const authContext = useContext(AuthContext);
-    const { user } = authContext;
-    
+    const { user ,userAuthenticate} = authContext;
+
+    const petContext = useContext(PetContext);
+    const {pets,getPet} = petContext
+
+    useEffect(()=> {
+        userAuthenticate();
+        getPet()
+    },[])
+
+    console.log('Miren',user)
+    console.log('mascotas',pets)
     return (
         <Fragment>
           
@@ -35,7 +45,7 @@ const ProfileUser = () => {
                         />
                     </div>
                     <div>
-                        <h2>Bojack Horseman</h2>
+                        {user === null ? null : (<h2>{user.name}</h2>)}
                         <p>Pequeña descripcion que se yo</p>
                     </div>
                 </div>
@@ -50,12 +60,13 @@ const ProfileUser = () => {
                         </Link>
                     </div>
                     
-                    <div class="card-deck text-center">
-                        <Tarjeta /> 
-                        <Tarjeta /> 
-                        <Tarjeta /> 
-                        <Tarjeta /> 
-                        <Tarjeta /> 
+                    <div class="card-deck">
+                        {pets.map(pet =>(
+                            <Tarjeta 
+                                key={pet._id}
+                                pet={pet}
+                            /> 
+                        ))} 
                     </div>
     
                 </div>

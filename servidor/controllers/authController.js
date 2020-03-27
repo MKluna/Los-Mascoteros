@@ -46,6 +46,8 @@ exports.authenticateUser = async (req, res) => {
 
 exports.userAuthenticate = async (req, res) => {
     try {
+        console.log('Desde el servidor usersu')
+        console.log(req.user)
         const user = await User.findById(req.user.id).select('-password');
         console.log('Desde el servidor');
         console.log(user)
