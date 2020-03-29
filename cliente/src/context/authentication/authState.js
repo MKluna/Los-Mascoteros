@@ -21,7 +21,7 @@ const AuthState = props =>{
         authenticated : null,
         user: null,
         message: null,
-        // loading: true
+        loading: true
     };
 
     const [state,dispatch] = useReducer(AuthReducer, initialState);
@@ -53,10 +53,11 @@ const AuthState = props =>{
     //retorna el usuario autenticado
     const userAuthenticate = async () =>{
         const token = localStorage.getItem('token');
-        if(token){
-    //         //TODO: funcion para enviar el token por headers 
+        
+        if (token) {
             tokenAuth(token);
         }
+
         try {
             const respuesta = await clienteAxios.get('/api/auth');/*--------------------------------------problem*/
             console.log('siguiente linea usuario')
@@ -111,7 +112,7 @@ const AuthState = props =>{
                 authenticated: state.authenticated,
                 user: state.user,
                 message: state.message,
-                // loading: state.loading,
+                loading: state.loading,
                 registerUser,
                 userAuthenticate,
                 login,
