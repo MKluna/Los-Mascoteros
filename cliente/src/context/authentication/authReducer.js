@@ -25,10 +25,12 @@ export default (state,action) => {
                 loading: false
             };
         case GET_USER:
-            console.log('estoy en el case get user',action.payload)
+            // console.log('estoy en el case get user',action.payload)
             return{
                 ...state,
-                user: action.payload
+                authenticated: true,
+                user: action.payload,
+                loading: false
             };
         case LOGIN_ERROR:
         case LOGOUT:
