@@ -292,16 +292,17 @@ aside {
 }
 
 .form-usuario {
-  background-color: var(--gris2);
-  height: 100vh;
-  min-height: 800px;
+  /* background-color: var(--gris2); */
+  background-image: url("./PortadaVNA2222.jpg");
+  /* height: 100%; */
+  min-height: 705px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 
 .contenedor-form {
-  padding: 5rem 3rem;
+  padding: 2rem 3rem;
   max-width: 500px;
   width: 95%;
   background-color: var(--blanco);
@@ -385,4 +386,8 @@ aside {
   margin-bottom: 0.5rem;
   margin-left: 3rem;
   margin-right: 3rem;
+}
+
+.text{
+  
 }
