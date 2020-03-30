@@ -9,8 +9,12 @@ import inicio from './components/inicio/inicio';
 import PetState from './context/pets/PetState';
 import InicioApp from './components/inicio/InicioApp';
 import NewPet from './components/pets/NewPet';
-import ProfileUser from './components/profile/ProfileUser';
+
+
 import LostPet from './components/petsLost/LostPet'; 
+
+import ProfileUser from './components/profile/ProfileUser'
+import formPet from './components/formularioEdicionPet/formPet'
 
 
 function App() {
@@ -27,8 +31,12 @@ function App() {
                 <Route exact path="/inicio" component={InicioApp}/>
                 <Route exact path="/new-pet" component={NewPet}/>
                 <Route exact path="/profile-user" component={ProfileUser}/>
+
                 <Route exact path="/lost-pet" component={LostPet}/>
                 
+
+                <Route exact path="/form-pet" component={formPet}/>
+
               </Switch>
           </Router>  
         </AuthState>

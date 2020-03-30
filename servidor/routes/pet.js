@@ -13,4 +13,20 @@ router.post('/',
     petController.addPet
 );
 
+//api/pet
+router.get('/',
+        auth,
+        petController.getPet
+)
+
+//Actualizar Mascota
+router.put('/:id',
+auth,
+petController.updatePet
+)
+
+//Eliminar una mascota
+router.delete('/:id',auth,petController.deletePet)
+
+
 module.exports = router;
