@@ -7,11 +7,11 @@ export default (state,action) => {
     switch (action.type) {
         case SHOW_ALERT:
             return {
-                alerta: action.payload
+                alert: action.payload
             };
         case HIDE_ALERT:
             return {
-                alerta: null
+                alert: null
             };
          default:
                 return state;

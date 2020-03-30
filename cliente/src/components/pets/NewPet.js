@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import AlertContext from '../../context/alert/alertContext';
 import PetContext from '../../context/pets/PetContext';
-import AuthContext from '../../context/authentication/authContext';
+// import AuthContext from '../../context/authentication/authContext';
 
 const NewPet = () => {
 	const initialState = {
@@ -16,13 +16,13 @@ const NewPet = () => {
 	const petContext = useContext(PetContext);
 	const { addPet } = petContext;
 
-	const authContext = useContext(AuthContext);
-    const { userAuthenticate } = authContext;
+	// const authContext = useContext(AuthContext);
+    // const { userAuthenticate } = authContext;
 
-    useEffect(() => {
-        userAuthenticate();
-        // eslint-disable-next-line
-    }, []);
+    // useEffect(() => {
+    //     userAuthenticate();
+    //     // eslint-disable-next-line
+    // }, []);
 
 	const [pet, setPet] = useState(initialState);
 

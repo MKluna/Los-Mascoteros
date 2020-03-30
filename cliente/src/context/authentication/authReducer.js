@@ -5,9 +5,10 @@ import {
     LOGIN_SUCCESSFUL,
     LOGIN_ERROR,
     LOGOUT
-}from '../../types';
+} from '../../types';
 
 export default (state,action) => {
+<<<<<<< HEAD
 switch(action.type){
     case REGISTRY_SUCCESSFUL:
         localStorage.setItem('token',action.payload.token);
@@ -46,3 +47,45 @@ switch(action.type){
 
 }
 }
+=======
+    switch(action.type) {
+        case REGISTRY_SUCCESSFUL:
+            localStorage.setItem('token',action.payload.token);
+            return{
+                ...state,
+                authenticated: true,
+                message: null
+            };
+        case LOGIN_SUCCESSFUL:
+            localStorage.setItem('token', action.payload.token);
+            return {
+                ...state,
+                authenticated: true,
+                message: null,
+                loading: false
+            };
+        case GET_USER:
+            // console.log('estoy en el case get user',action.payload)
+            return{
+                ...state,
+                authenticated: true,
+                user: action.payload,
+                loading: false
+            };
+        case LOGIN_ERROR:
+        case LOGOUT:
+        case REGISTRY_ERROR:
+            localStorage.removeItem('token');
+            return{
+                ...state,
+                token: null,
+                authenticated: null,//add
+                user: null,//add
+                message: action.payload,
+                loading: false
+            };
+        default:
+            return state;
+    }
+};
+>>>>>>> origin/LucianoReguera
