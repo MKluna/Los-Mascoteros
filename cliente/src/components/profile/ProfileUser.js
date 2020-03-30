@@ -1,10 +1,8 @@
 import React, { Fragment, useContext ,useEffect,useState} from 'react';
-
 import NavBar from '../layout/nav';
 import Tarjeta from '../tarjetas/tarjeta';
 import {Link} from 'react-router-dom'
 import AuthContext from '../../context/authentication/authContext';
-
 import '../../profile-user.css';
 import PetContext from '../../context/pets/PetContext'
 
@@ -24,12 +22,9 @@ const ProfileUser = () => {
 
     console.log('Miren',user)
     console.log('mascotas',pets)
-    
     return (
         <Fragment>
-          
-          <NavBar />
-
+            <NavBar />
             <div className="imagen-portada">
                 <img src="https://images.wallpapersden.com/image/wxl-bojack-horseman-season-1_68702.jpg"
                     className=""
@@ -51,9 +46,8 @@ const ProfileUser = () => {
                         <p>Pequeña descripcion que se yo</p>
                     </div>
                 </div>
-            </div>
-
-            <div className="container text-center">
+    
+                <div>
                     {/* listado de mascotas */}
                     <div className="text-center">
                         <h1>Mis Mascotas</h1>
@@ -72,6 +66,7 @@ const ProfileUser = () => {
                     </div>
     
                 </div>
+            </div>
 
         </Fragment>
     );
