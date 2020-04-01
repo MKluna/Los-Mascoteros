@@ -5,7 +5,8 @@ import clienteAxios from '../../config/axios';
 import { 
     ADD_PET,
     PET_ERROR,
-    GET_PET
+    GET_PET,
+    DELETE_PET
 } from '../../types';
 
 const PetState = props => {
@@ -34,6 +35,18 @@ const PetState = props => {
             });
         }
     };
+    const deletePet = async id =>{
+        try {
+            await clienteAxios.delete(`/api/pet/${id}`)
+            dispatch({
+                type: DELETE_PET,
+                payload: id
+            })
+        } catch (error) {
+        console.log(error)
+            
+        }
+    }
 
     const getPet = async () => {
         try {
@@ -60,7 +73,8 @@ const PetState = props => {
             value={{
                 pets: state.pets,
                 addPet,
-                getPet
+                getPet,
+                deletePet
             }}
         >
             {props.children}
