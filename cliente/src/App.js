@@ -20,6 +20,7 @@ if (token) {
 
 function App() {
   // console.log(process.env.REACT_APP_BACKEND_URL);
+  
   return (
     <PetState>
       <AlertState> 
@@ -27,7 +28,7 @@ function App() {
             <Router>
               <Switch>
                 <Route exact path="/" component={inicio} />
-                <Route exact path="/login" component={Login} />
+                <Route exact path="/login" component={Login} /> 
                 <Route exact path="/new-account" component={NewAccount} />
                 <PrivateRoute exact path="/inicio" component={InicioApp}/>
                 <PrivateRoute exact path="/new-pet" component={NewPet}/>

@@ -25,7 +25,6 @@ export default (state,action) => {
                 loading: false
             };
         case GET_USER:
-            // console.log('estoy en el case get user',action.payload)
             return{
                 ...state,
                 authenticated: true,
@@ -39,8 +38,8 @@ export default (state,action) => {
             return{
                 ...state,
                 token: null,
-                authenticated: null,//add
-                user: null,//add
+                authenticated: null,
+                user: null,
                 message: action.payload,
                 loading: false
             };
