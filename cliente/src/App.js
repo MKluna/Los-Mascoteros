@@ -12,18 +12,8 @@ import ProfileUser from './components/profile/ProfileUser';
 import tokenAuth from './config/token';
 import AuthState from "./context/authentication/authState";
 import PrivateRoute from './components/routes/PrivateRoute';
-
-
-
-import LostPet from './components/petsLost/LostPet'; 
-
-import ProfileUser from './components/profile/ProfileUser'
 import formPet from './components/formularioEdicionPet/formPet'
 
-
-import tokenAuth from './config/token';
-import AuthState from "./context/authentication/authState";
-import PrivateRoute from './components/routes/PrivateRoute';
 
 
 const token = localStorage.getItem('token');
@@ -46,17 +36,7 @@ function App() {
                 <PrivateRoute exact path="/inicio" component={InicioApp}/>
                 <PrivateRoute exact path="/new-pet" component={NewPet}/>
                 <PrivateRoute exact path="/profile-user" component={ProfileUser}/>
-                <Route exact path="/inicio" component={InicioApp}/>
-                <Route exact path="/new-pet" component={NewPet}/>
-                <Route exact path="/profile-user" component={ProfileUser}/>
-
-                <Route exact path="/lost-pet" component={LostPet}/>
-                
-
                 <Route exact path="/form-pet" component={formPet}/>
-
-
-                <PrivateRoute exact path="/inicio" component={InicioApp}/>
 
               </Switch>
           </Router>  
