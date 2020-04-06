@@ -1,25 +1,31 @@
-import React,{useState, useEffect, useContext} from 'react';
+import React,{ useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/authentication/authContext';
 
+
 const Login = props => {
+
 	const alertContext = useContext(AlertContext);
 	const { alert, showAlert } = alertContext;
 
 	const authContext = useContext(AuthContext);
-    const { message, authenticated, login } = authContext;
-	
-    useEffect(() => {
-		if(authenticated) {
-            props.history.push('/inicio');
-        }
+	const { message, login, authenticated, userAuthenticate } = authContext;
+
+	const token = localStorage.getItem('token');
+
+	useEffect(() => {
+		if (authenticated && token) {
+			props.history.push('/inicio');
+		}
 
         if(message) {
             showAlert(message.msg, message.category);
-        }
-        // eslint-disable-next-line
-	}, [message, authenticated, props.history]);
+		}
+		
+		userAuthenticate();
+		//eslint-disable-next-line
+	}, [message, authenticated, props.history, token]);
 	
 	const [user, setUser] = useState({
     	email:'',
@@ -36,20 +42,16 @@ const Login = props => {
     	});
   	};
 
-  	//Cuando el usuario quiere iniciar sesion
   	const handleSubmit = e => {
       	e.preventDefault();
 
-		//Validar Campos vacions
 		if(email.trim() === '' || password.trim() === '') {
 			showAlert('Todos los campos son obligatorios', 'alerta-error');
 			return;
 		}
 		
-		//Pasarlo al Action
 		login({ email, password });
 	};
-
 
 	return (
 		<div className="form-usuario">
