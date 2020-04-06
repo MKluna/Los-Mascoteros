@@ -34,11 +34,9 @@ const AuthState = props =>{
                 type: REGISTRY_SUCCESSFUL,
                 payload: response.data
             });
-            //obtener usuario
             userAuthenticate();
             
         } catch (error) {
-            // console.log(error.response.data.msg);
             const alert = {
                 msg: error.response.data.msg,
                 category:'alerta-error'
@@ -50,7 +48,6 @@ const AuthState = props =>{
         }
     };
     
-    //retorna el usuario autenticado
     const userAuthenticate = async () =>{
         const token = localStorage.getItem('token');
         
@@ -60,8 +57,6 @@ const AuthState = props =>{
 
         try {
             const response = await clienteAxios.get('/api/auth');
-            // console.log('siguiente linea usuario')
-            // console.log(respuesta)
             dispatch({
                 type: GET_USER,
                 payload: response.data.user
@@ -78,16 +73,12 @@ const AuthState = props =>{
     const login = async user => {
         try {
             const response = await clienteAxios.post('/api/auth', user);
-            // console.log('desde aca')
-            // console.log(response.data)
             dispatch({
                 type: LOGIN_SUCCESSFUL,
                 payload: response.data
             });
-            //obtenee el usuario
             userAuthenticate();
         } catch (error) {
-            // console.log(error.response.data.msg );
             const alert = {
                 msg: error.response.data.msg,
                 category: 'alerta-error'
