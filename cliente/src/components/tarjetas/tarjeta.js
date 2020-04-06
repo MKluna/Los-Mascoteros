@@ -1,12 +1,8 @@
 import React from 'react';
 import Botones from './botones';
 const Tarjeta = ({pet}) => {
-
-    // const {pet,key} = props;
-    const {name, _id} = pet;
+    const {name} = pet;
     console.log(name)
-    const identificador = _id;
-    console.log(identificador)
     return (
       <div className="contedor-app align-top">
         <div className="card modal-sm">
@@ -16,9 +12,7 @@ const Tarjeta = ({pet}) => {
             <p className="card-text">
               Hola Soy {name} ¿Como Estas?
             </p>
-            <Botones
-            identificador
-            />
+            <Botones/>
           </div>
         </div>
       </div>

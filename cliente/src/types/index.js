@@ -11,5 +11,4 @@ export const LOGOUT = 'LOGOUT'; //cerrar sesion
 export const ADD_PET = 'ADD_PET';
 export const PET_ERROR = 'PET_ERROR';
 export const GET_PET = 'GET_PET';
-export const DELETE_PET = 'DELETE_PET';
 // export const VALIDATE_PET_FORM = 'VALIDATE_PET_FORM';

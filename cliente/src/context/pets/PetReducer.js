@@ -1,8 +1,7 @@
 import { 
     ADD_PET,
     PET_ERROR,
-    GET_PET,
-    DELETE_PET
+    GET_PET
 } from '../../types';
 
 export default (state, action) => {
@@ -21,11 +20,6 @@ export default (state, action) => {
             return{
                 ...state,
                 pets : action.payload
-            }
-        case DELETE_PET:
-            return{
-                ...state,
-                pets: action.payload
             }
         default:
             return state;
