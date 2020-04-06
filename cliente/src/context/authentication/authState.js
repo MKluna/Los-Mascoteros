@@ -21,31 +21,31 @@ const AuthState = props =>{
         authenticated : null,
         user: null,
         message: null,
-        // loading: true
+        loading: true
     };
 
     const [state,dispatch] = useReducer(AuthReducer, initialState);
     
-    const registerUser = async datos => {
+    const registerUser = async info => {
         try {
-            const respuesta = await clienteAxios.post('/api/users',datos);
-            console.log(respuesta.data);
+            const response = await clienteAxios.post('/api/users', info);
+            console.log(response.data);
             dispatch({
                 type: REGISTRY_SUCCESSFUL,
-                payload: respuesta.data
+                payload: response.data
             });
             //obtener usuario
             userAuthenticate();
             
         } catch (error) {
             // console.log(error.response.data.msg);
-            const alerta = {
+            const alert = {
                 msg: error.response.data.msg,
                 category:'alerta-error'
             };
             dispatch({
                 type: REGISTRY_ERROR,
-                payload: alerta
+                payload: alert
             });
         }
     };
@@ -53,17 +53,18 @@ const AuthState = props =>{
     //retorna el usuario autenticado
     const userAuthenticate = async () =>{
         const token = localStorage.getItem('token');
-        if(token){
-    //         //TODO: funcion para enviar el token por headers 
+        
+        if (token) {
             tokenAuth(token);
         }
+
         try {
-            const respuesta = await clienteAxios.get('/api/auth');/*--------------------------------------problem*/
-            console.log('siguiente linea usuario')
-            console.log(respuesta)
+            const response = await clienteAxios.get('/api/auth');
+            // console.log('siguiente linea usuario')
+            // console.log(respuesta)
             dispatch({
                 type: GET_USER,
-                payload: respuesta.data.user
+                payload: response.data.user
             });
             
         } catch (error) {
@@ -77,8 +78,8 @@ const AuthState = props =>{
     const login = async user => {
         try {
             const response = await clienteAxios.post('/api/auth', user);
-            console.log('desde aca')
-            console.log(response.data)
+            // console.log('desde aca')
+            // console.log(response.data)
             dispatch({
                 type: LOGIN_SUCCESSFUL,
                 payload: response.data
@@ -90,7 +91,7 @@ const AuthState = props =>{
             const alert = {
                 msg: error.response.data.msg,
                 category: 'alerta-error'
-            }
+            };
             dispatch({
                 type: LOGIN_ERROR,
                 payload: alert
@@ -111,7 +112,7 @@ const AuthState = props =>{
                 authenticated: state.authenticated,
                 user: state.user,
                 message: state.message,
-                // loading: state.loading,
+                loading: state.loading,
                 registerUser,
                 userAuthenticate,
                 login,

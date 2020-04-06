@@ -19,14 +19,4 @@ router.get('/',
         petController.getPet
 )
 
-//Actualizar Mascota
-router.put('/:id',
-auth,
-petController.updatePet
-)
-
-//Eliminar una mascota
-router.delete('/:id',auth,petController.deletePet)
-
-
 module.exports = router;

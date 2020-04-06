@@ -10,14 +10,7 @@ const Login = props => {
 	const authContext = useContext(AuthContext);
     const { message, authenticated, login } = authContext;
 	
-    const [user, setUser] = useState({
-    	email:'',
-       	password:''
-   	});
-
-	const {email, password} = user;
-	  
-	useEffect(() => {
+    useEffect(() => {
 		if(authenticated) {
             props.history.push('/inicio');
         }
@@ -26,7 +19,14 @@ const Login = props => {
             showAlert(message.msg, message.category);
         }
         // eslint-disable-next-line
-    }, [message, authenticated, props.history]);
+	}, [message, authenticated, props.history]);
+	
+	const [user, setUser] = useState({
+    	email:'',
+       	password:''
+   	});
+
+	const {email, password} = user;
 	
   	const handleChange = e => 
   	{
@@ -42,7 +42,8 @@ const Login = props => {
 
 		//Validar Campos vacions
 		if(email.trim() === '' || password.trim() === '') {
-            showAlert('Todos los campos son obligatorios', 'alerta-error');
+			showAlert('Todos los campos son obligatorios', 'alerta-error');
+			return;
 		}
 		
 		//Pasarlo al Action
@@ -52,7 +53,7 @@ const Login = props => {
 
 	return (
 		<div className="form-usuario">
-			{ alert ? ( <div className={`alerta ${alert.categoria}`}>{ alert.msg }</div> ) : null }
+			{ alert ? ( <div className={`alerta ${alert.category}`}>{ alert.msg }</div> ) : null }
 			<div className="contenedor-form sombra-dark">
 				<h1>Iniciar Sesión</h1>
 				<form
