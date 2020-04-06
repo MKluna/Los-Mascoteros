@@ -78,7 +78,7 @@ const onSubmit = e =>{
         <div className="form-usuario">
            {alerta ? (<div className={`alerta ${alerta.category}`}>{alerta.msg}</div>): null}   
        <div className="contenedor-form sombra-dark">
-            <h1>Obtener una Cuenta</h1>
+            <h1 className="mb-4">OBTENER UNA CUENTA</h1>
             <form 
             onSubmit={onSubmit}
             >

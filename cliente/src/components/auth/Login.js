@@ -55,7 +55,7 @@ const Login = props => {
 		<div className="form-usuario">
 			{ alert ? ( <div className={`alerta ${alert.category}`}>{ alert.msg }</div> ) : null }
 			<div className="contenedor-form sombra-dark">
-				<h1>Iniciar Sesión</h1>
+				<h1 className="mb-5">INICIAR SESIÓN</h1>
 				<form
 				onSubmit={handleSubmit}
 				>

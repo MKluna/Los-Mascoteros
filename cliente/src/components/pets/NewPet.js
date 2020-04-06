@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import AlertContext from '../../context/alert/alertContext';
 import PetContext from '../../context/pets/PetContext';
 // import AuthContext from '../../context/authentication/authContext';
+// import imagen1 from './fondomascota.jpg'
 
 const NewPet = () => {
 	const initialState = {
@@ -49,14 +50,16 @@ const NewPet = () => {
 	};
 
 	return (
+		 
 		<div className="form-usuario">
+			{/* <image src={imagen1}/> */}
 			{ alerta ? (<div className={`alerta ${alerta.category}`}>{alerta.msg}</div>) : null }  
 			<div className="contenedor-form sombra-dark">
-			<h1>Registrar Mascota</h1>
+			<h1 className="mb-5">REGISTRAR MASCOTA</h1>
 				<form
 					onSubmit={onSubmit}
 				>
-					<div className="campo-form">
+					<div className="campo-form mb-5">
 						<label htmlFor="nombre">Nombre</label>
 						<input
 							type="text"
@@ -68,9 +71,9 @@ const NewPet = () => {
 						/>
 					</div>
 					<div>
-						<label className="mr-4" htmlFor="specie">Especie</label>
+						<label className="mr-4 mb-5" htmlFor="specie">Especie</label>
 						<select
-							className="ml-5"
+							className="ml-5 "
 							name="specie"
 							id="specie"
 							value={specie}
@@ -92,7 +95,7 @@ const NewPet = () => {
 							onChange={onChange}
 						/>
 					</div>
-					<div className="campo-form">
+					<div className="campo-form mt-5">
 						<input
 							type="submit"
 							className="btn btn-block btn-primario"
@@ -102,6 +105,7 @@ const NewPet = () => {
 				</form>
 			</div>
 		</div>
+		// </image>
 	);
 };
 
