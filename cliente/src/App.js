@@ -12,6 +12,9 @@ import ProfileUser from './components/profile/ProfileUser';
 import tokenAuth from './config/token';
 import AuthState from "./context/authentication/authState";
 import PrivateRoute from './components/routes/PrivateRoute';
+import formPet from './components/formularioEdicionPet/formPet'
+
+
 
 const token = localStorage.getItem('token');
 if (token) {
@@ -20,6 +23,7 @@ if (token) {
 
 function App() {
   // console.log(process.env.REACT_APP_BACKEND_URL);
+  
   return (
     <PetState>
       <AlertState> 
@@ -27,11 +31,13 @@ function App() {
             <Router>
               <Switch>
                 <Route exact path="/" component={inicio} />
-                <Route exact path="/login" component={Login} />
+                <Route exact path="/login" component={Login} /> 
                 <Route exact path="/new-account" component={NewAccount} />
                 <PrivateRoute exact path="/inicio" component={InicioApp}/>
                 <PrivateRoute exact path="/new-pet" component={NewPet}/>
                 <PrivateRoute exact path="/profile-user" component={ProfileUser}/>
+                <Route exact path="/form-pet" component={formPet}/>
+
               </Switch>
           </Router>  
         </AuthState>
