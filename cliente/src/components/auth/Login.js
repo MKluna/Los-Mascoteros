@@ -57,37 +57,39 @@ const Login = props => {
 		<div className="form-usuario">
 			{ alert ? ( <div className={`alerta ${alert.category}`}>{ alert.msg }</div> ) : null }
 			<div className="contenedor-form sombra-dark">
-				<h1>Iniciar Sesión</h1>
-				<form onSubmit={handleSubmit}>
-					<div className="campo-form">
-						<label htmlFor="email">Email</label>
-						<input
-						type="email"
-						id="email"
-						name="email"
-						placeholder="Tu Email"
-						value={email}
-						onChange={handleChange}
-						/>
-					</div>
-					<div className="campo-form">
-						<label htmlFor="password">Password</label>
-						<input
-						type="password"
-						id="password"
-						name="password"
-						placeholder="Tu Password"
-						value={password}
-						onChange={handleChange}
-						/>
-					</div>
-					<div className="campo-form">
-						<input
-						type="submit"
-						className="btn btn-primario btn-block"
-						value="Iniciar Sesión"
-						></input>
-					</div>
+				<h1 className="mb-5">INICIAR SESIÓN</h1>
+				<form
+				onSubmit={handleSubmit}
+				>
+				<div className="campo-form">
+					<label htmlFor="email">Email</label>
+					<input
+					type="email"
+					id="email"
+					name="email"
+					placeholder="Tu Email"
+					value={email}
+					onChange={handleChange}
+					/>
+				</div>
+				<div className="campo-form">
+					<label htmlFor="password">Password</label>
+					<input
+					type="password"
+					id="password"
+					name="password"
+					placeholder="Tu Password"
+					value={password}
+					onChange={handleChange}
+					/>
+				</div>
+				<div className="campo-form">
+					<input
+					type="submit"
+					className="btn btn-primario btn-block"
+					value="Iniciar Sesión"
+					></input>
+				</div>
 				</form>
 				<Link to={'/new-account'} className="enlace-cuenta">Obtener Cuenta</Link>
 			</div>

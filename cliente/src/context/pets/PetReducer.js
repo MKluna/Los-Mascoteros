@@ -1,7 +1,8 @@
 import { 
     ADD_PET,
     PET_ERROR,
-    GET_PET
+    GET_PET,
+    UPDATE_PET
 } from '../../types';
 
 export default (state, action) => {

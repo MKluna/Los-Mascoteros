@@ -55,12 +55,21 @@ const PetState = props => {
         }
     }
 
+    const updatePet = async pet =>{
+        try {
+            console.log(pet);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <PetContext.Provider
             value={{
                 pets: state.pets,
                 addPet,
-                getPet
+                getPet,
+                updatePet
             }}
         >
             {props.children}
