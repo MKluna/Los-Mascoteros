@@ -5,7 +5,9 @@ import clienteAxios from '../../config/axios';
 import { 
     ADD_PET,
     PET_ERROR,
-    GET_PET
+    GET_PET,
+    GET_PET_Actual, 
+    DELET_PET,
 } from '../../types';
 
 const PetState = props => {
@@ -38,7 +40,7 @@ const PetState = props => {
     const getPet = async () => {
         try {
             const result = await clienteAxios.get('/api/pet');
-            //console.log(result.data.mascotas);
+            // console.log(result.data.mascotas);
             dispatch({
                 type: GET_PET,
                 payload:result.data.mascotas
@@ -54,14 +56,42 @@ const PetState = props => {
             })
         }
     }
+    
 
-    const updatePet = async pet =>{
+    const deletPet = async petId => {
         try {
-            console.log(pet);
+              await clienteAxios.delete(`/api/pet/${petId}`);  
+    
+            dispatch({
+                type: DELET_PET,
+                payload: petId
+              });
+
         } catch (error) {
-            console.log(error);
+            const alert = {
+                msg: 'Hubo un error',
+                category: 'alerta-error'
+            };
+            dispatch({
+                type:PET_ERROR,
+                payload: alert
+            })
         }
+      };
+
+
+
+  
+
+const updatePet = async pet =>{
+    try {
+        // console.log(pet);
+    } catch (error) {
+        // console.log(error);
     }
+}
+
+
 
     return (
         <PetContext.Provider
@@ -69,7 +99,9 @@ const PetState = props => {
                 pets: state.pets,
                 addPet,
                 getPet,
-                updatePet
+                updatePet,
+                deletPet
+            
             }}
         >
             {props.children}
