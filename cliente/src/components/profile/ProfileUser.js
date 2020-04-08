@@ -20,8 +20,10 @@ const ProfileUser = () => {
         getPet()
     },[])
 
-    console.log('Miren',user)
-    console.log('mascotas',pets)
+    // console.log('Miren',user)
+    // console.log('mascotas',pets)
+    // console.log(user)
+    // console.log(pets)
     return (
         <Fragment>
             <NavBar />
