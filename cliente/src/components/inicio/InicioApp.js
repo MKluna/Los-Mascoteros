@@ -1,6 +1,6 @@
 import React,{Fragment} from 'react';
 import NavBar from '../layout/nav';
-import FormularioInicio from '../formulario/formularioInicio'
+import FormularioInicio from '../formulario/formularioInicio';
 
 const InicioApp = () => {
     return ( 

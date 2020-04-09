@@ -15,8 +15,8 @@ exports.addPet = async (req, res) => {
         pet.owner = req.user.id;
         
         //guardo mascota await?
-        pet.save()
-        res.json(pet)
+        pet.save();
+        res.json(pet);
 
         // await pet.save();
 
@@ -28,31 +28,31 @@ exports.addPet = async (req, res) => {
 };
 
 //obtener las mascotas
-exports.getPet = async (req,res)=> {
-    try{
+exports.getPet = async (req,res) => {
+    try {
         const mascotas = await Pet.find({owner: req.user.id});
         res.json({mascotas});
         
-    }catch(error){
+    } catch(error) {
         console.log(error);
-        res.status(500).send('Hubo un error')
+        res.status(500).send('Hubo un error');
     }
-}
+};
 
 //Actualizar Mascota
-exports.updatePet = async (req,res)=>{
+exports.updatePet = async (req,res) => {
     //revisar si hay error
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
     //extraer l ainformacion del proyecto
-    const {mascotas,name,birth,specie} = req.body;
-    const newPet={}
+    const {mascotas, name, birth, specie} = req.body;
+    const newPet = {};
 
-    if(name){newPet.name = name;}
-    if(birth){newPet.birth = birth;}
-    if(specie){newPet.specie = specie;}
+    if(name) { newPet.name = name; }
+    if(birth) { newPet.birth = birth; }
+    if(specie) { newPet.specie = specie; }
 
     try 
     {
@@ -60,10 +60,10 @@ exports.updatePet = async (req,res)=>{
         // const {mascotas,name,birth,specie} = req.body;
       
         //Si existe la mascota
-        let petExist = await Pet.findById(req.params.id)
-        if (!petExist){return res.status(404).json({msg:'No Existe'})}
+        let petExist = await Pet.findById(req.params.id);
+        if (!petExist) { return res.status(404).json({msg:'No Existe'}); }
 
-        if(petExist.owner.toString() !== req.user.id){
+        if (petExist.owner.toString() !== req.user.id) {
             return res.status(401).json({msg: 'No autorizado'});
         }
 
@@ -84,7 +84,7 @@ exports.updatePet = async (req,res)=>{
          //Guardar Mascota
 
          petExist = await Pet.findByIdAndUpdate({_id:req.params.id},{$set:newPet},{new:true});
-         res.json({petExist})
+         res.json({petExist});
     } 
     catch (error) 
     {
@@ -92,9 +92,9 @@ exports.updatePet = async (req,res)=>{
         res.status(500).send('Hubo un error GRAVE '+error);
         
     }
-}
+};
 
-exports.deletePet=async(req,res)=>
+exports.deletePet = async(req,res) =>
 {
     try 
     {
@@ -107,8 +107,8 @@ exports.deletePet=async(req,res)=>
         }
 
         //eliminar el proyecto
-    await Pet.findOneAndRemove({_id:req.params.id})
-        res.json({msg:'Pet Deleted'})
+    await Pet.findOneAndRemove({_id:req.params.id});
+        res.json({msg:'Pet Deleted'});
 
 
     } 
@@ -118,4 +118,4 @@ exports.deletePet=async(req,res)=>
         res.status(500).send('Hubo un error GRAVE '+error);
         
     }
-}
+};

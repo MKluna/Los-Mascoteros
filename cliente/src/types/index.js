@@ -14,4 +14,5 @@ export const GET_PET = 'GET_PET';
 export const UPDATE_PET = 'UPDATE_PET';
 export const DELET_PET = 'DELET_PET';
 export const GET_PET_Actual = 'GET_PET_Actual';
+export const CURRENT_PET = 'CURRENT_PET';
 // export const VALIDATE_PET_FORM = 'VALIDATE_PET_FORM';

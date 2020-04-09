@@ -17,21 +17,21 @@ router.post('/',
 router.get('/',
         auth,
         petController.getPet
-)
+);
 
 //Actualizar Mascota
 router.put('/:id',
-auth,
-[
-    check('name','El nombre es obligatorio').not().isEmpty()
-],
-petController.updatePet
-)
+    auth,
+    [
+        check('name','El nombre es obligatorio').not().isEmpty()
+    ],
+    petController.updatePet
+);
 
 //Eliminar una mascota
 router.delete('/:id',
-auth,
-petController.deletePet
+    auth,
+    petController.deletePet
 );
 
 
