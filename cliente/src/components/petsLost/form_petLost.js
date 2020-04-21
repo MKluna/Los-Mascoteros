@@ -39,6 +39,14 @@ const Form_petLost = (props) => {
         e.preventDefault();
         addPetLost(petLostState);
 
+		setPetLost({
+			pet: '',
+			name: '',
+			ubication: '',
+			reward: '',
+			telefon:'',
+			dateLost: ''
+		})
         return props.history.push('/profile-user');
     } 
 

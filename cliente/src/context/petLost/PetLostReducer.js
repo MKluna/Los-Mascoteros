@@ -11,7 +11,12 @@ export default (state,action) => {
                 ...state,
                 petLost: [...state.petLost, action.payload]
             };
-        default:
+        case GET_PETLOST:
+            return{
+                ...state,
+                petLost: action.payload
+            }
+        default: 
             return state;
     }
 };

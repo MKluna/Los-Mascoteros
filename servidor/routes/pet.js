@@ -18,6 +18,9 @@ router.get('/',
         auth,
         petController.getPet
 );
+router.get('/lost/:id',
+    petController.getPetLost
+)
 
 //Actualizar Mascota
 router.put('/:id',

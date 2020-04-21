@@ -12,4 +12,9 @@ router.post('/',
     petLostController.createPetLost
 );
 
+//api/petLost
+router.get('/',
+    petLostController.getPetLost
+)
+
 module.exports = router;

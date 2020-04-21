@@ -19,3 +19,14 @@ exports.createPetLost= async (req,res)=>{
     }
     
 }
+
+exports.getPetLost = async (req,res) => {
+
+    try {
+        const petLost = await PetLost.find({});
+        res.json({petLost});
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Hubo un error');
+    }
+}

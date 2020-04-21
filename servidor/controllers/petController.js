@@ -39,6 +39,19 @@ exports.getPet = async (req,res) => {
     }
 };
 
+//obtener mascota que se reporto como perdidad
+exports.getPetLost = async (req,res) => {
+    try {
+        //console.log(req.params.id);
+        const petLost = await Pet.find({_id:req.params.id});
+        console.log(petLost)
+        res.json({petLost});
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('Hubo un error');
+    }
+}
+
 //Actualizar Mascota
 exports.updatePet = async (req,res) => {
     //revisar si hay error

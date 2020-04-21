@@ -102,6 +102,21 @@ const PetState = props => {
         });
     };
 
+    //Obtengo las mascotas que fueron reportadas como perdidas
+    const getPetLost = async (id) => {
+        try {
+            //console.log(id)
+            const result = await clienteAxios.get(`/api/pet/lost/${id}`);
+            console.log(result);
+            dispatch({
+                type: GET_PET,
+                payload: result.data.petLost
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <PetContext.Provider
             value={{
@@ -112,7 +127,8 @@ const PetState = props => {
                 getPet,
                 updatePet,
                 deletPet,
-                setCurrentPet
+                setCurrentPet,
+                getPetLost
             }}
         >
             {props.children}
