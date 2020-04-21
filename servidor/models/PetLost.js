@@ -8,7 +8,7 @@ const PetLostSchema = mongoose.Schema({
     },
 
     // fecha de perdida
-    date: {
+    dateLost: {
         type: Date,
         require: true
     },
@@ -23,7 +23,7 @@ const PetLostSchema = mongoose.Schema({
     // + Fotos
     pics: {
         type: String, //pasa la url
-        require: true
+        require: false
     },
 
     // Recompensa
@@ -34,10 +34,10 @@ const PetLostSchema = mongoose.Schema({
     },
 
     // // Dueño/s
-    // owner: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'User'
-    // },
+    owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
     
     //Telefono de contacto
     telefon: {

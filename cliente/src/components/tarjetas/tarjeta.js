@@ -6,7 +6,7 @@ import petContext from "../../context/pets/PetContext";
 
 const Tarjeta = ({pet}) => {
   
-    const {name, _id ,} = pet;
+    const {name, _id ,birth} = pet;
     const numeroID = _id;
 
     //Extraer mascota de state inicial  
@@ -31,6 +31,7 @@ const Tarjeta = ({pet}) => {
             <p className="card-text">
               Hola Soy {name} ¿Como Estas?
             </p>
+            <p>Fecha de nacimiento: {new Date(birth).toISOString().slice(0,10)}</p>
             <Link 
               type="button"
               to={'/form-pet'}
@@ -42,7 +43,12 @@ const Tarjeta = ({pet}) => {
               className="btn btn-danger ml-3 mr-3"
               onClick={onClikEliminar}
             >Eliminar</button>
-            <button type="button" className="btn btn-info">Mas Info</button>
+            <Link 
+              type="button"
+              to={'/form-petLost'}
+              className="btn btn-info"
+              onClick={() => selectPet(pet)}
+            >Reportar Perdida</Link>
           </div>
         </div>
       </div>

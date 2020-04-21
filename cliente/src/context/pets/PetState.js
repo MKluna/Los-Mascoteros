@@ -16,7 +16,8 @@ const PetState = props => {
     
     const initialState = {
         pets: [],
-        petEdit: null
+        petEdit: null,
+        petLost: null
     };
 
     const [state, dispatch] = useReducer(PetReducer, initialState);
@@ -106,6 +107,7 @@ const PetState = props => {
             value={{
                 pets: state.pets,
                 petEdit: state.petEdit,
+                petLost: state.petLost,
                 addPet,
                 getPet,
                 updatePet,

@@ -39,7 +39,8 @@ export default (state, action) => {
         case CURRENT_PET:
             return {
                 ...state,
-                petEdit: action.payload
+                petEdit: action.payload,
+                petLost: action.payload
             };
         default:
             return state;
