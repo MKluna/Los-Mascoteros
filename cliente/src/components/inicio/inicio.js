@@ -24,7 +24,7 @@ const Inicio = () => {
 
                 <div className="text-center">
                     <h1>Mascotas perdidas recientemente</h1>
-                    <div class="card-deck text-center">
+                    <div className="card-deck text-center">
                                         <div className="contedor-app align-top">
                                             <div className="card modal-sm">
                                             <img src="https://bucket1.glanacion.com/anexos/fotos/02/2749002w380.jpg" className="card-img-top modal-sm" alt="Se Supone que aca va una imagen" />

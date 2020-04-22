@@ -10,11 +10,19 @@ const FormularioInicio = () => {
     useEffect(()=> {
         getPetLost();
     },[])
-
+    const EventoSubmit=(e)=>{                      {/*Erro de Consola ------Futura Busqueda--- */}
+        e.preventDefault();
+        //acciones d ela busqueda
+    }
+   const onChange = ()=>{                         {/*Erro de Consola ------Futura Bsuquedas--- */}
+        //actualizar futuro state
+   }
     //console.log(petLost)
     //console.log(petLost[0]);
     return ( 
-        <form className="col-12">
+        <form className="col-12"
+        onSubmit={EventoSubmit}
+        >
             <fieldset className="text-center">
                 <legend>Buscador de Mascotas Seleccione una Categoria</legend>
             </fieldset>
@@ -23,8 +31,9 @@ const FormularioInicio = () => {
                     <select
                         className="form-control form-select form-option"
                         name="categoria"
+                        onChange={onChange}                               
                     >
-                        <option value="" selected>Seleccione un categoria</option>
+                        <option value="" >Seleccione un categoria</option>{/*Erro de Consola 2------selected--- */}
                         <option value="Perdidos">Mascotas Perdidas</option>
                     </select>
                 </div>
@@ -34,6 +43,7 @@ const FormularioInicio = () => {
                         type="Submit"
                         className="btn btn-block btn-primary"
                         value="Buscar"
+                        onChange={onChange}
                     />
                 </div>
             </div>
@@ -51,5 +61,5 @@ const FormularioInicio = () => {
         </form>
      );
 }
- 
+
 export default FormularioInicio;
