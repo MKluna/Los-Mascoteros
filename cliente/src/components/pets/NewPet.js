@@ -1,18 +1,19 @@
 import React, { useState, useContext } from "react";
 import AlertContext from '../../context/alert/alertContext';
 import PetContext from '../../context/pets/PetContext';
+import {  } from 'react-router-dom';
 // import AuthContext from '../../context/authentication/authContext';
 // import imagen1 from './fondomascota.jpg'
 
-const NewPet = () => {
+const NewPet = props => {
 	const initialState = {
 		name:'', 
 		specie:'',
-		birth: new Date()
+		birth: ''
 	};
 
 	const alertContext = useContext(AlertContext);
-	const { alerta, showAlert } = alertContext;
+	const { alert, showAlert } = alertContext;
 
 	const petContext = useContext(PetContext);
 	const { addPet } = petContext;
@@ -47,13 +48,18 @@ const NewPet = () => {
 		addPet(pet);
 
 		setPet(initialState);
+
+		showAlert('Su mascota ha sido registrada','alerta-ok');
+
+		return props.history.push('/profile-user');
+
 	};
 
 	return (
 		 
 		<div className="form-usuario">
 			{/* <image src={imagen1}/> */}
-			{ alerta ? (<div className={`alerta ${alerta.category}`}>{alerta.msg}</div>) : null }  
+			{ alert ? (<div className={`alerta ${alert.category}`}>{alert.msg}</div>) : null }  
 			<div className="contenedor-form sombra-dark">
 			<h1 className="mb-5">REGISTRAR MASCOTA</h1>
 				<form

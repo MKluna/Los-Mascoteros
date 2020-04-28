@@ -5,13 +5,19 @@ import clienteAxios from '../../config/axios';
 import { 
     ADD_PET,
     PET_ERROR,
-    GET_PET
+    GET_PET,
+    GET_PET_Actual, 
+    DELET_PET,
+    UPDATE_PET,
+    CURRENT_PET
 } from '../../types';
 
 const PetState = props => {
     
     const initialState = {
-        pets: []
+        pets: [],
+        petEdit: null,
+        petLost: null
     };
 
     const [state, dispatch] = useReducer(PetReducer, initialState);
@@ -38,11 +44,11 @@ const PetState = props => {
     const getPet = async () => {
         try {
             const result = await clienteAxios.get('/api/pet');
-            //console.log(result.data.mascotas);
+            // console.log(result);
             dispatch({
                 type: GET_PET,
                 payload:result.data.mascotas
-            })
+            });
         } catch (error) {
             const alert = {
                 msg: 'Hubo un error',
@@ -51,13 +57,61 @@ const PetState = props => {
             dispatch({
                 type:PET_ERROR,
                 payload: alert
-            })
+            });
         }
-    }
-
-    const updatePet = async pet =>{
+    };
+    
+    const deletPet = async petId => {
         try {
-            console.log(pet);
+            await clienteAxios.delete(`/api/pet/${petId}`);  
+    
+            dispatch({
+                type: DELET_PET,
+                payload: petId
+            });
+        } catch (error) {
+            const alert = {
+                msg: 'Hubo un error',
+                category: 'alerta-error'
+            };
+            dispatch({
+                type:PET_ERROR,
+                payload: alert
+            });
+        }
+    };
+
+    const updatePet = async pet => {
+        try {
+            const result = await clienteAxios.put(`/api/pet/${pet._id}`, pet);
+            console.log(result);
+            dispatch({
+                type: UPDATE_PET,
+                payload: result.data.petExist
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    // Selecciona una mascota para su edicion
+    const setCurrentPet = pet => {
+        dispatch({
+            type: CURRENT_PET,
+            payload: pet
+        });
+    };
+
+    //Obtengo las mascotas que fueron reportadas como perdidas
+    const getPetLost = async (id) => {
+        try {
+            //console.log(id)
+            const result = await clienteAxios.get(`/api/pet/lost/${id}`);
+            console.log(result);
+            dispatch({
+                type: GET_PET,
+                payload: result.data.petLost
+            })
         } catch (error) {
             console.log(error);
         }
@@ -67,9 +121,14 @@ const PetState = props => {
         <PetContext.Provider
             value={{
                 pets: state.pets,
+                petEdit: state.petEdit,
+                petLost: state.petLost,
                 addPet,
                 getPet,
-                updatePet
+                updatePet,
+                deletPet,
+                setCurrentPet,
+                getPetLost
             }}
         >
             {props.children}

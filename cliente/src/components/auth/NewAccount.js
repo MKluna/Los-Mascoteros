@@ -14,7 +14,7 @@ const NewAccount = (props) => {
     const token = localStorage.getItem('token');
     
     useEffect(() =>{
-        if(authenticated && token) {
+        if(token) {
             props.history.push('/inicio');
         }
 
@@ -24,7 +24,7 @@ const NewAccount = (props) => {
 
         userAuthenticate();
         //eslint-disable-next-line
-    },[message, authenticated, props.history, token]);
+    },[message, authenticated, props.history]);
   
 
     const [user, setUser] = useState({

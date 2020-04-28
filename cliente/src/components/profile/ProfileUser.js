@@ -1,30 +1,38 @@
-import React, { Fragment, useContext ,useEffect,useState} from 'react';
+import React, { Fragment, useContext ,useEffect } from 'react';
 import NavBar from '../layout/nav';
 import Tarjeta from '../tarjetas/tarjeta';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import AuthContext from '../../context/authentication/authContext';
 import '../../profile-user.css';
-import PetContext from '../../context/pets/PetContext'
+import PetContext from '../../context/pets/PetContext';
+import AlertContext from '../../context/alert/alertContext';
 
 const ProfileUser = () => {
 
     // Extraer informacion de Autenticacion
     const authContext = useContext(AuthContext);
-    const { user ,userAuthenticate} = authContext;
+    const { user, userAuthenticate } = authContext;
+
 
     const petContext = useContext(PetContext);
-    const {pets,getPet} = petContext
+    const { pets, getPet } = petContext;
+
+    const alertContext = useContext(AlertContext);
+	const { alert } = alertContext;
 
     useEffect(()=> {
         userAuthenticate();
-        getPet()
-    },[])
+        getPet();
+    },[]);
 
-    console.log('Miren',user)
-    console.log('mascotas',pets)
+    // console.log('Miren',user)
+    // console.log('mascotas',pets)
+    // console.log(user)
+    // console.log(pets)
     return (
         <Fragment>
             <NavBar />
+            { alert ? (<div className={`alerta ${alert.category}`}>{alert.msg}</div>) : null }
             <div className="imagen-portada">
                 <img src="https://images.wallpapersden.com/image/wxl-bojack-horseman-season-1_68702.jpg"
                     className=""
@@ -56,7 +64,7 @@ const ProfileUser = () => {
                         </Link>
                     </div>
                     
-                    <div class="card-deck">
+                    <div className="card-deck">
                         {pets.map(pet =>(
                             <Tarjeta 
                                 key={pet._id}

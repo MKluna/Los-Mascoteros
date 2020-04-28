@@ -10,12 +10,13 @@ const Login = props => {
 	const { alert, showAlert } = alertContext;
 
 	const authContext = useContext(AuthContext);
-	const { message, login, authenticated, userAuthenticate } = authContext;
+	const { message, login, authenticated } = authContext;
 
 	const token = localStorage.getItem('token');
 
 	useEffect(() => {
-		if (authenticated && token) {
+		
+		if (token) {
 			props.history.push('/inicio');
 		}
 
@@ -23,9 +24,8 @@ const Login = props => {
             showAlert(message.msg, message.category);
 		}
 		
-		userAuthenticate();
 		//eslint-disable-next-line
-	}, [message, authenticated, props.history, token]);
+	}, [message, authenticated, props.history]);
 	
 	const [user, setUser] = useState({
     	email:'',

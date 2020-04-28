@@ -15,8 +15,8 @@ const NavBar = () => {
                     <Link to={'/profile-user'} className="btn btn-info">Perfil</Link>
                     <Link to={'/inicio'} className="btn btn-primary ">Inicio</Link>
                     <button 
-                    className="btn btn-danger " 
-                    onClick={()=> logout()}
+                        className="btn btn-danger " 
+                        onClick={()=> logout()}
                     >Cerrar Sesion</button>
                 </div>
             </nav>

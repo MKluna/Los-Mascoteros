@@ -17,6 +17,25 @@ router.post('/',
 router.get('/',
         auth,
         petController.getPet
+);
+router.get('/lost/:id',
+    petController.getPetLost
 )
+
+//Actualizar Mascota
+router.put('/:id',
+    auth,
+    [
+        check('name','El nombre es obligatorio').not().isEmpty()
+    ],
+    petController.updatePet
+);
+
+//Eliminar una mascota
+router.delete('/:id',
+    auth,
+    petController.deletePet
+);
+
 
 module.exports = router;
