@@ -2,6 +2,7 @@ import React , {useContext} from 'react';
 // import Botones from './botones';
 import {Link} from 'react-router-dom';
 import petContext from "../../context/pets/PetContext";
+import Swal from 'sweetalert2';
 
 
 const Tarjeta = ({pet}) => {
@@ -15,7 +16,24 @@ const Tarjeta = ({pet}) => {
 
  
     const onClikEliminar = () => {
-        deletPet(numeroID);
+      Swal.fire({
+        title: '¿Estas seguro de eliminar tu mascota?',
+        text: "Una vez eliminado tendras que volver a cargarlo",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si,Borrar.'
+      }).then((result) => {
+        if (result.value) {
+          Swal.fire(
+            '¡Borrado!',
+            'Tu mascota fue borrada.',
+            'success'
+          )
+          deletPet(numeroID);
+        }
+      })
     };
 
     const selectPet = (pet) => {
