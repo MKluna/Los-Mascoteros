@@ -6,7 +6,8 @@ exports.addPet = async (req, res) => {
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-
+    //esto agregue para saber si el content-type del headers es multipart/form-data    
+    //console.log(req.headers);
     try {
         //crea una mascota
         let pet = new Pet(req.body);

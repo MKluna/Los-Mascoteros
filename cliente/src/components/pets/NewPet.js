@@ -27,8 +27,15 @@ const NewPet = props => {
     // }, []);
 
 	const [pet, setPet] = useState(initialState);
+	const [image,setImage] = useState('');
 
 	const { name, specie, birth } = pet;
+
+	/*const formData = new FormData();
+	formData.append('name', pet.name);
+	formData.append('specie',pet.specie);
+	formData.append('birth',pet.birth);
+	formData.append('image',image);*/
 
 	const onChange = e => {
 		setPet({
@@ -36,6 +43,13 @@ const NewPet = props => {
 			[e.target.name] : e.target.value
 		});
 	};
+
+	const onChangeImage = e => {
+		//console.log(e.target.files);
+		setImage(
+			e.target.files[0]
+		)
+	}
 
 	const onSubmit = e => {
 		e.preventDefault();
@@ -45,7 +59,7 @@ const NewPet = props => {
 			return;
 		}
 		
-		addPet(pet);
+		addPet(pet,image);
 
 		setPet(initialState);
 
@@ -99,6 +113,14 @@ const NewPet = props => {
 							id="birth"
 							value={birth}
 							onChange={onChange}
+						/>
+					</div>
+					<div>
+						<label className="mr-5">Agrega una imagen</label>
+						<input
+							type="file"
+							name="image"
+							onChange={onChangeImage}
 						/>
 					</div>
 					<div className="campo-form mt-5">
