@@ -33,6 +33,9 @@ const PetSchema = mongoose.Schema({
     created: {
         type: Date,
         default: Date.now()
+    },
+    image:{
+        type:String
     }
 
 });
