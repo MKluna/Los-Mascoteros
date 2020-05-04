@@ -1,16 +1,57 @@
 const Pet = require('../models/Pet');
 const { validationResult } = require('express-validator');
+const multer = require("multer");
+const shortid = require("shortid");
+
+const configuracionMulter = {
+    storage: (fileStorage = multer.diskStorage({
+      destination: (req, file, cb) => {
+        cb(null, __dirname + "../../uploads/imagePet");
+      },
+      filename: (req, file, cb) => {
+        const extension = file.mimetype.split("/")[1];
+        cb(null, `${shortid.generate()}.${extension}`);
+      },
+    })),
+    fileFilter(req, file, cb) {
+      if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+        cb(null, true);
+      } else {
+        cb(new Error("Formato No válido"));
+      }
+    },
+  };
+  // pasar la configuración y el campo
+  const upload = multer(configuracionMulter).single("image");
+  //Sube un archivo
+  exports.subirArchivo = (req,res,next)=>{
+      upload(req,res,function (error) { 
+          if (error) {
+              res.json({mensaje:error})
+          }
+          return next();
+       })
+  }
+
+
+
 
 exports.addPet = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-
+    //crea una mascota
+    let pet = new Pet(req.body);
     try {
-        //crea una mascota
-        let pet = new Pet(req.body);
-
+        if (req.file===undefined||null) 
+        {
+            pet.image='empty'
+        }
+        else
+        {
+            if (req.file.filename){pet.image=req.file.filename}
+        }
         //guardamos el dueno
         pet.owner = req.user.id;
         
@@ -59,45 +100,28 @@ exports.updatePet = async (req,res) => {
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-    //extraer l ainformacion del proyecto
-    const {mascotas, name, birth, specie} = req.body;
-    const newPet = {};
-
-    if(name) { newPet.name = name; }
-    if(birth) { newPet.birth = birth; }
-    if(specie) { newPet.specie = specie; }
-
+    
     try 
     {
-        //En el caso de no editar la especie borrarla
-        // const {mascotas,name,birth,specie} = req.body;
-      
-        //Si existe la mascota
         let petExist = await Pet.findById(req.params.id);
         if (!petExist) { return res.status(404).json({msg:'No Existe'}); }
 
-        if (petExist.owner.toString() !== req.user.id) {
+        if (petExist.owner.toString() !== req.user.id) 
+        {
             return res.status(401).json({msg: 'No autorizado'});
         }
 
-        // const existMasc = await Pet.findById(mascotas);
-        // if (existMasc.owner.toString() !== req.owner.id) 
-        // {
-        //     return res.status(401).json({msg:'No Autorizado'})    
-        // }
         
-         //Created New Object 
+        let petImage = await Pet.findById(req.params.id);
+        let newImagePet = req.body;
+        if (req.file.filename) 
+        {newImagePet.image = req.file.filename}
+        else
+        {newImagePet.image=petImage.image}
 
-        //  const newPet={}
-
-        //  if(name){newPet.name = name;}
-        //  if(birth){newPet.birth = birth;}
-        //  if(specie){newPet.specie = specie;}
-
-         //Guardar Mascota
-
-         petExist = await Pet.findByIdAndUpdate({_id:req.params.id},{$set:newPet},{new:true});
-         res.json({petExist});
+        let newPet = req.body;
+        let pet = await Pet.findByIdAndUpdate({_id:req.params.id},newPet,{new:true})
+         res.json({pet});
     } 
     catch (error) 
     {
