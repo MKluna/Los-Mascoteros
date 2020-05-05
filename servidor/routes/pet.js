@@ -7,9 +7,7 @@ const { check } = require('express-validator');
 // /api/pet
 router.post('/',
     auth,
-    [
-        check('name','El nombre es obligatorio').not().isEmpty()
-    ],
+    petController.subirArchivo,
     petController.addPet
 );
 
@@ -25,9 +23,7 @@ router.get('/lost/:id',
 //Actualizar Mascota
 router.put('/:id',
     auth,
-    [
-        check('name','El nombre es obligatorio').not().isEmpty()
-    ],
+    petController.subirArchivo,
     petController.updatePet
 );
 
