@@ -23,6 +23,9 @@ const UsersSchema = mongoose.Schema({
     registro:{
         type:Date,
         default:Date.now()
+    },
+    image:{
+        type:String
     }
 })
 

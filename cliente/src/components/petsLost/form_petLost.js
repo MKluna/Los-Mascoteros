@@ -2,6 +2,7 @@ import React, {useContext,useState} from 'react';
 import {Link} from 'react-router-dom';
 import PetContext from '../../context/pets/PetContext';
 import PetLostContext from '../../context/petLost/PetLostContext';
+import Swal from 'sweetalert2';
 
 const Form_petLost = (props) => {
 
@@ -47,6 +48,13 @@ const Form_petLost = (props) => {
 			telefon:'',
 			dateLost: ''
 		})
+		Swal.fire({
+			position: 'top-end',
+			icon: 'success',
+			title: 'Su mascota fue reportada con exito,esperamos la encuentres pronto...',
+			showConfirmButton: false,
+			timer: 1500
+		  })
         return props.history.push('/profile-user');
     } 
 
