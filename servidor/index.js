@@ -9,6 +9,8 @@ connectDB();
 app.use(cors());
 app.use( express.json({ extended: true }));
 
+app.use(express.static(__dirname + '/uploads/imagePet'));
+
 const port = process.env.PORT || 4000;
 
 app.use('/api/users',require('./routes/users'));

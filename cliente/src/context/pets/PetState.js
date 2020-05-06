@@ -22,15 +22,15 @@ const PetState = props => {
 
     const [state, dispatch] = useReducer(PetReducer, initialState);
 
-    const addPet = async (pet,image) => {
+    const addPet = async (formData) => {
         try {
             
-            //console.log(pet,image);
-            const result = await clienteAxios.post('api/pet', pet,image,{
+            const result = await clienteAxios.post('api/pet', formData, {
                 headers: {
                     'Content-Type' : 'multipart/form-data'
                 }
             });
+            console.log(result.data);
             dispatch({
                 type: ADD_PET,
                 payload: result.data

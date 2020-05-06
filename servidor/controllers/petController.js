@@ -20,21 +20,18 @@ const configuracionMulter = {
         cb(new Error("Formato No válido"));
       }
     },
-  };
+};
   // pasar la configuración y el campo
-  const upload = multer(configuracionMulter).single("image");
+const upload = multer(configuracionMulter).single("image");
   //Sube un archivo
-  exports.subirArchivo = (req,res,next)=>{
-      upload(req,res,function (error) { 
-          if (error) {
-              res.json({mensaje:error})
-          }
-          return next();
-       })
-  }
-
-
-
+exports.subirArchivo = (req,res,next)=>{
+    upload(req, res, (error) => { 
+        if (error) {
+            res.json({mensaje:error});
+        }
+        return next();
+    });
+  };
 
 exports.addPet = async (req, res) => {
     const errors = validationResult(req);
@@ -42,23 +39,29 @@ exports.addPet = async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
     //esto agregue para saber si el content-type del headers es multipart/form-data    
-    //console.log(req.headers);
+    // console.log(req.headers);
     //crea una mascota
     let pet = new Pet(req.body);
+
+    console.log(req.body);
+    console.log(req.file);
+
     try {
-        if (req.file===undefined||null) 
+        if (req.file === undefined || null) 
         {
-            pet.image='empty'
+            pet.image='empty';
         }
         else
         {
-            if (req.file.filename){pet.image=req.file.filename}
+            if (req.file.filename) {
+                pet.image = req.file.filename;
+            }
         }
         //guardamos el dueno
         pet.owner = req.user.id;
         
         //guardo mascota await?
-        pet.save();
+        await pet.save();
         res.json(pet);
 
         // await pet.save();
@@ -66,12 +69,14 @@ exports.addPet = async (req, res) => {
         // res.send('Mascota creada');
         res.statud(200).send('Mascota creada');
     } catch (error) {
-        res.status(400).send('Hay un error en petcontrooler');
+        if (!req) {
+            return res.status(400).send('Hay un error en petcontrooler');
+        }
     }
 };
 
 //obtener las mascotas
-exports.getPet = async (req,res) => {
+exports.getPet = async (req, res) => {
     try {
         const mascotas = await Pet.find({owner: req.user.id});
         res.json({mascotas});

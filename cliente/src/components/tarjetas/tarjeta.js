@@ -7,9 +7,11 @@ import Swal from 'sweetalert2';
 
 const Tarjeta = ({pet}) => {
   
-    const {name, _id ,birth} = pet;
+    const {name, _id ,birth, image} = pet;
     const numeroID = _id;
 
+    const staticImage = `${process.env.REACT_APP_BACKEND_URL}/${image}`;
+    
     //Extraer mascota de state inicial  
     const PetContext = useContext(petContext);
     const { deletPet, setCurrentPet } = PetContext;
@@ -43,13 +45,14 @@ const Tarjeta = ({pet}) => {
     return (
       <div className="contedor-app align-top">
         <div className="card modal-sm">
-          <img src="https://bucket1.glanacion.com/anexos/fotos/02/2749002w380.jpg" className="card-img-top modal-sm" alt="Se Supone que aca va una imagen" />
+          <img src={staticImage} className="card-img-top modal-sm" alt="Se Supone que aca va una imagen" />
           <div className="card-body">
             <h5 className="card-title">Nombre : {name}</h5>
             <p className="card-text">
               Hola Soy {name} ¿Como Estas?
             </p>
-            <p>Fecha de nacimiento: {new Date(birth).toISOString().slice(0,10)}</p>
+            <p>Fecha de nacimiento: { new Date(birth).toISOString().slice(0,10) }</p>
+            {/* {new Date(birth).toISOString().slice(0,10)} */}
             <Link 
               type="button"
               to={'/form-pet'}
