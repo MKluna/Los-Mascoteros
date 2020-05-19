@@ -9,6 +9,7 @@ const FormularioInicio = () => {
 
     useEffect(()=> {
         getPetLost();
+        //eslint-disable-next-line
     },[])
 
     //console.log(petLost)

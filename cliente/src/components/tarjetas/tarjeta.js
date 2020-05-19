@@ -7,13 +7,14 @@ import Swal from 'sweetalert2';
 
 const Tarjeta = ({pet}) => {
   
-    const {name, _id ,birth} = pet;
+    const {name, _id ,birth,image} = pet;
     const numeroID = _id;
 
     //Extraer mascota de state inicial  
     const PetContext = useContext(petContext);
     const { deletPet, setCurrentPet } = PetContext;
 
+    console.log(image);
  
     const onClikEliminar = () => {
       Swal.fire({
@@ -43,7 +44,8 @@ const Tarjeta = ({pet}) => {
     return (
       <div className="contedor-app align-top">
         <div className="card modal-sm">
-          <img src="https://bucket1.glanacion.com/anexos/fotos/02/2749002w380.jpg" className="card-img-top modal-sm" alt="Se Supone que aca va una imagen" />
+        {image ? (<img src={`${process.env.REACT_APP_BACKEND_URL}/${image}`} className="card-img-top modal-sm" alt="Se Supone que aca va una imagen"/>): <img src="https://bucket1.glanacion.com/anexos/fotos/02/2749002w380.jpg" className="card-img-top modal-sm" alt="Se Supone que aca va una imagen" />}
+          
           <div className="card-body">
             <h5 className="card-title">Nombre : {name}</h5>
             <p className="card-text">
