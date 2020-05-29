@@ -36,7 +36,6 @@ const PetLostState = props => {
     const getPetLost = async ()=> {
         try {
             const result = await clienteAxios.get('/api/petlost')
-            //console.log(result.data.petLost);
             dispatch({
                 type: GET_PETLOST,
                 payload: result.data.petLost

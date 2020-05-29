@@ -32,6 +32,12 @@ const NewPet = props => {
 
 	const { name, specie, birth } = pet;
 
+	const formData = new FormData();
+	formData.append('name', pet.name);
+	formData.append('specie',pet.specie);
+	formData.append('birth',pet.birth);
+	formData.append('image',image);
+
 	const onChange = e => {
 		setPet({
 			...pet,
