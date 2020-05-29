@@ -10,7 +10,7 @@ const PetLostSchema = mongoose.Schema({
     // fecha de perdida
     dateLost: {
         type: Date,
-        require: true
+        require: false //estaba en true
     },
 
     // Ubicacion

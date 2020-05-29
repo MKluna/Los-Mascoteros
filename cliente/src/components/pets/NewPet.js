@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import AlertContext from '../../context/alert/alertContext';
+import Swal from 'sweetalert2';
 import PetContext from '../../context/pets/PetContext';
 import {  } from 'react-router-dom';
 // import AuthContext from '../../context/authentication/authContext';
@@ -27,7 +28,7 @@ const NewPet = props => {
     // }, []);
 
 	const [pet, setPet] = useState(initialState);
-	const [image,setImage] = useState('');
+	const [image, setImage] = useState('');
 
 	const { name, specie, birth } = pet;
 
@@ -44,12 +45,11 @@ const NewPet = props => {
 		});
 	};
 
-	const onChangeImage = e => {
-		//console.log(e.target.files);
+	const handleChangeImage = e => {
 		setImage(
 			e.target.files[0]
-		)
-	}
+		);
+	};
 
 	const onSubmit = e => {
 		e.preventDefault();
@@ -57,12 +57,24 @@ const NewPet = props => {
 			showAlert('Todos los campos son obligatorios','alerta-error');
 			return;
 		}
+
+		const formData = new FormData();
+		formData.append('name', pet.name);
+		formData.append('specie', pet.specie);
+		formData.append('birth', pet.birth);
+		formData.append('image', image);
 		
 		addPet(formData);
 
 		setPet(initialState);
 
-		showAlert('Su mascota ha sido registrada','alerta-ok');
+		Swal.fire({
+			position: 'top-end',
+			icon: 'success',
+			title: 'Su mascota ha sido registrada',
+			showConfirmButton: false,
+			timer: 1500
+		});
 
 		return props.history.push('/profile-user');
 
@@ -71,8 +83,6 @@ const NewPet = props => {
 	return (
 		 
 		<div className="form-usuario">
-			{/* <image src={imagen1}/> */}
-			{ alert ? (<div className={`alerta ${alert.category}`}>{alert.msg}</div>) : null }  
 			<div className="contenedor-form sombra-dark">
 			<h1 className="mb-5">REGISTRAR MASCOTA</h1>
 				<form
@@ -109,6 +119,7 @@ const NewPet = props => {
 						<input
 							type="date"
 							name="birth"
+							max={Date.now()}
 							id="birth"
 							value={birth}
 							onChange={onChange}
@@ -119,7 +130,8 @@ const NewPet = props => {
 						<input
 							type="file"
 							name="image"
-							onChange={onChangeImage}
+							encType="multipart/form-data"
+							onChange={handleChangeImage}
 						/>
 					</div>
 					<div className="campo-form mt-5">
@@ -132,7 +144,6 @@ const NewPet = props => {
 				</form>
 			</div>
 		</div>
-		// </image>
 	);
 };
 
