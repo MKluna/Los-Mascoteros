@@ -10,6 +10,7 @@ const CardPetLost = ({pet}) => {
 
     useEffect(()=> {
         getPetLost(_id);
+        //eslint-disable-next-line
     },[])
     
     // console.log(pets)

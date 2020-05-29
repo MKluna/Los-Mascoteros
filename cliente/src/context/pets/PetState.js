@@ -6,7 +6,6 @@ import {
     ADD_PET,
     PET_ERROR,
     GET_PET,
-    GET_PET_Actual, 
     DELET_PET,
     UPDATE_PET,
     CURRENT_PET
@@ -22,15 +21,11 @@ const PetState = props => {
 
     const [state, dispatch] = useReducer(PetReducer, initialState);
 
-    const addPet = async (pet,image) => {
+    const addPet = async (pet) => {
         try {
             
             //console.log(pet,image);
-            const result = await clienteAxios.post('api/pet', pet,image,{
-                headers: {
-                    'Content-Type' : 'multipart/form-data'
-                }
-            });
+            const result = await clienteAxios.post('api/pet', pet);
             dispatch({
                 type: ADD_PET,
                 payload: result.data

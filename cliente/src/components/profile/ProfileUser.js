@@ -31,6 +31,7 @@ const ProfileUser = () => {
         userAuthenticate();
         getPet();
         getPetLost();
+        //eslint-disable-next-line
     },[]);
 
     
