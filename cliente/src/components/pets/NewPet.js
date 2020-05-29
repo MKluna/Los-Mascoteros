@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect } from "react";
 import AlertContext from '../../context/alert/alertContext';
 import PetContext from '../../context/pets/PetContext';
 import {  } from 'react-router-dom';
@@ -13,19 +13,21 @@ const NewPet = props => {
 	};
 
 	const alertContext = useContext(AlertContext);
-	const { alert, showAlert } = alertContext;
+	const {  alert, showAlert} = alertContext;
 
 	const petContext = useContext(PetContext);
-	const { addPet } = petContext;
+	const { addPet,getPet ,pets  } = petContext;
 
 	// const authContext = useContext(AuthContext);
     // const { userAuthenticate } = authContext;
 
-    // useEffect(() => {
+    useEffect(() => {
+		getPet();
     //     userAuthenticate();
     //     // eslint-disable-next-line
-    // }, []);
+    },[]);
 
+	
 	const [pet, setPet] = useState(initialState);
 	const [image,setImage] = useState('');
 
@@ -49,24 +51,40 @@ const NewPet = props => {
 		setImage(
 			e.target.files[0]
 		)
+
 	}
+	
 
 	const onSubmit = e => {
 		e.preventDefault();
-		
+
 		if (name.trim() === ''|| specie.trim() === ''||	birth.trim() === null) {
 			showAlert('Todos los campos son obligatorios','alerta-error');
 			return;
 		}
-		
-		addPet(formData);
-
+		let booleanPet;
+		pets.map((pet)=>{
+			if(pet.name === name && pet.specie === specie){
+				// showAlert("Esta mascota ya existe",'alerta-error')
+				// return props.history.push('/new-pet');
+				booleanPet=true
+			}else{
+				booleanPet=false
+			}
+		})
 		setPet(initialState);
+		if(booleanPet){
+			showAlert("Esta mascota ya existe",'alerta-error')
+				// return props.history.push('/new-pet');
+		}else{
+			addPet(formData);
+				
+				showAlert('Su mascota ha sido registrada','alerta-ok');
+				return props.history.push('/profile-user');
+		}
 
-		showAlert('Su mascota ha sido registrada','alerta-ok');
-
-		return props.history.push('/profile-user');
-
+		// showAlert('Su mascota ha sido registrada','alerta-ok');
+		 
 	};
 
 	return (
