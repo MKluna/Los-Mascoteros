@@ -63,15 +63,27 @@ const ProfileUser = () => {
                             >+ Agregar Nueva Mascota
                         </Link>
                     </div>
-                    
-                    <div className="card-deck">
-                        {pets.map(pet =>(
-                            <Tarjeta 
-                                key={pet._id}
-                                pet={pet}
-                            /> 
-                        ))} 
-                    </div>
+                    {
+                        pets.length == 0 ? 
+                        <div className="text-center">
+                            <h3>Aún no tienes mascotas registradas?</h3>
+                            <h4>Te invitamos a que registres tus mascotas en la plataforma</h4>
+                            <Link to={'/new-pet'} className=""
+                            >Registra tu primera mascota aquí!
+                        </Link>
+
+                        </div>
+                        :
+                        <div className="card-deck">
+                            {pets.map(pet =>(
+                                <Tarjeta 
+                                    key={pet._id}
+                                    pet={pet}
+                                /> 
+                            ))} 
+                        </div>
+                        
+                    }
     
                 </div>
             </div>
