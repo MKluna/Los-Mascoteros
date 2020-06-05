@@ -13,7 +13,7 @@ const NavBarInicio = () => {
                 </div>
                 <div className="div-nav">
                     <Link to={'/login'} className="btn btn-info">Log In</Link>
-                    <Link to={'/new-account'} className="btn btn-primary ">Sing Up</Link>
+                    <Link to={'/new-account'} className="btn btn-primary ">Sign Up</Link>
                 </div>
             </nav>
         </Fragment>

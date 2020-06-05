@@ -17,7 +17,7 @@ const NewPet = props => {
 	const { alert, showAlert } = alertContext;
 
 	const petContext = useContext(PetContext);
-	const { addPet } = petContext;
+	const { addPet} = petContext;
 
 	// const authContext = useContext(AuthContext);
     // const { userAuthenticate } = authContext;
@@ -53,7 +53,6 @@ const NewPet = props => {
 
 	const onSubmit = e => {
 		e.preventDefault();
-		
 		if (name.trim() === ''|| specie.trim() === ''||	birth.trim() === null) {
 			showAlert('Todos los campos son obligatorios','alerta-error');
 			return;
