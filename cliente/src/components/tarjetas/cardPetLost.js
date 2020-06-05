@@ -13,7 +13,7 @@ const CardPetLost = ({pet}) => {
         //eslint-disable-next-line
     },[])
     
-    console.log(pets)
+    // console.log(pets)
     //console.log(_id)
     //console.log(pet);
     return (  
