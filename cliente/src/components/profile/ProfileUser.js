@@ -23,7 +23,6 @@ const ProfileUser = () => {
     useEffect(()=> {
         userAuthenticate();
         getPet();
-        //eslint-disable-next-line
     },[]);
 
     // console.log('Miren',user)
