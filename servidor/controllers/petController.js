@@ -42,10 +42,7 @@ exports.addPet = async (req, res) => {
     // console.log(req.headers);
     //crea una mascota
     let pet = new Pet(req.body);
-
-    console.log(req.body);
     console.log(req.file);
-
     try {
         if (req.file === undefined || null) 
         {
@@ -60,14 +57,11 @@ exports.addPet = async (req, res) => {
         //guardamos el dueno
         pet.owner = req.user.id;
         
-        //guardo mascota await?
+        //guardo mascota
         await pet.save();
         res.json(pet);
 
-        // await pet.save();
-
-        // res.send('Mascota creada');
-        res.statud(200).send('Mascota creada');
+        res.status(200).send('Mascota creada');
     } catch (error) {
         if (!req) {
             return res.status(400).send('Hay un error en petcontrooler');
@@ -92,8 +86,8 @@ exports.getPetLost = async (req,res) => {
     try {
         //console.log(req.params.id);
         const petLost = await Pet.find({_id:req.params.id});
-        console.log(petLost)
-        res.json({petLost});
+        //console.log(petLost)
+        //res.json({petLost});
     } catch (error) {
         console.log(error);
         res.status(500).send('Hubo un error');
