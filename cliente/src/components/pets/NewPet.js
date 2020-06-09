@@ -1,4 +1,4 @@
-import React, { useState, useContext,useEffect } from "react";
+import React, { useState, useContext } from "react";
 import AlertContext from '../../context/alert/alertContext';
 import Swal from 'sweetalert2';
 import PetContext from '../../context/pets/PetContext';
@@ -14,21 +14,19 @@ const NewPet = props => {
 	};
 
 	const alertContext = useContext(AlertContext);
-	const {  alert, showAlert} = alertContext;
+	const { alert, showAlert } = alertContext;
 
 	const petContext = useContext(PetContext);
-	const { addPet,getPet ,pets  } = petContext;
+	const { addPet } = petContext;
 
 	// const authContext = useContext(AuthContext);
     // const { userAuthenticate } = authContext;
 
-    useEffect(() => {
-		getPet();
+    // useEffect(() => {
     //     userAuthenticate();
     //     // eslint-disable-next-line
-    },[]);
+    // }, []);
 
-	
 	const [pet, setPet] = useState(initialState);
 	const [image, setImage] = useState('');
 
@@ -44,41 +42,37 @@ const NewPet = props => {
 	const handleChangeImage = e => {
 		setImage(
 			e.target.files[0]
-		)
-
-	}
-	
+		);
+	};
 
 	const onSubmit = e => {
 		e.preventDefault();
-
+		
 		if (name.trim() === ''|| specie.trim() === ''||	birth.trim() === null) {
 			showAlert('Todos los campos son obligatorios','alerta-error');
 			return;
 		}
-		let booleanPet;
-		pets.map((pet)=>{
-			if(pet.name === name && pet.specie === specie){
-				// showAlert("Esta mascota ya existe",'alerta-error')
-				// return props.history.push('/new-pet');
-				booleanPet=true
-			}else{
-				booleanPet=false
-			}
-		})
-		setPet(initialState);
-		if(booleanPet){
-			showAlert("Esta mascota ya existe",'alerta-error')
-				// return props.history.push('/new-pet');
-		}else{
-			addPet(formData);
-				
-				showAlert('Su mascota ha sido registrada','alerta-ok');
-				return props.history.push('/profile-user');
-		}
 
-		// showAlert('Su mascota ha sido registrada','alerta-ok');
-		 
+		const formData = new FormData();
+		formData.append('name', pet.name);
+		formData.append('specie', pet.specie);
+		formData.append('birth', pet.birth);
+		formData.append('image', image);
+		
+		addPet(formData);
+
+		setPet(initialState);
+
+		Swal.fire({
+			position: 'top-end',
+			icon: 'success',
+			title: 'Su mascota ha sido registrada',
+			showConfirmButton: false,
+			timer: 1500
+		});
+
+		return props.history.push('/profile-user');
+
 	};
 
 	return (

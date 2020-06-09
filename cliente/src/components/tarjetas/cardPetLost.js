@@ -12,7 +12,7 @@ const CardPetLost = ({pet}) => {
         getPetLost(_id);
     },[])
     
-    // console.log(pets)
+    console.log(pets)
     //console.log(_id)
     //console.log(pet);
     return (  

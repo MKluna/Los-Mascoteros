@@ -12,11 +12,11 @@ import {
 
 const PetLostState = props => {
     
-    const initialState = {
+    const InitialState = {
         petLost : []
     } 
  
-    const [state, dispatch] = useReducer(PetLostReducer, initialState);
+    const [state, dispatch] = useReducer(PetLostReducer, InitialState);
 
     //Funcion para agregar un mascota reportada como perdida
     const addPetLost = async petLost => {

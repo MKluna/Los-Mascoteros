@@ -12,7 +12,6 @@ const FormPet = props => {
 	const { alert, showAlert } = alertContext;
 
 	const [pet, setPet] = useState(petEdit);
-	const [image, setImage] = useState('');
 
 	const { name, specie, birth } = pet;
 
@@ -24,13 +23,6 @@ const FormPet = props => {
 			[e.target.name] : e.target.value
 		});
 	};
-
-	const handleChangeImage = e => {
-		setImage(
-			e.target.files[0]
-		);
-	};
-
 	
 	const handleSubmit = e => {
 		e.preventDefault();
@@ -103,15 +95,6 @@ const FormPet = props => {
 						/>
 					</div>
 					<br />
-					<div>
-						<label className="mr-5">Agrega una imagen</label>
-						<input
-							type="file"
-							name="image"
-							encType="multipart/form-data"
-							onChange= {handleChangeImage}
-						/>
-					</div>
 					<div className="campo-form">
 						<input
 							type="submit"
