@@ -1,7 +1,8 @@
-import React , {useContext} from 'react';
+import React , {useContext,useEffect} from 'react';
 // import Botones from './botones';
 import {Link} from 'react-router-dom';
 import petContext from "../../context/pets/PetContext";
+import petLostContext from "../../context/petLost/PetLostContext";
 import Swal from 'sweetalert2';
 
 
@@ -37,6 +38,7 @@ const Tarjeta = ({pet}) => {
         }
       })
     };
+  
 
     const selectPet = (pet) => {
       setCurrentPet(pet);
@@ -64,12 +66,19 @@ const Tarjeta = ({pet}) => {
               className="btn btn-danger ml-3 mr-3"
               onClick={onClikEliminar}
             >Eliminar</button>
-            <Link 
+            {busqueda({numeroID})?<Link 
               type="button"
               to={'/form-petLost'}
               className="btn btn-info"
               onClick={() => selectPet(pet)}
-            >Reportar Perdida</Link>
+            >Reportar Perdida</Link>:
+            <Link 
+              type="button"
+              to={'/form-petLost'}
+              className="btn btn-info"
+              // onClick={() => eliminar(pet)}
+            >Eliminar de Mascota Perdida</Link>}
+            
           </div>
         </div>
       </div>
