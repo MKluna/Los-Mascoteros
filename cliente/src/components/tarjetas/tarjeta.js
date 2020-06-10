@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 
 
 const Tarjeta = ({pet}) => {
+
   
     const {name, _id ,birth,image} = pet;
     const numeroID = _id;
@@ -22,6 +23,7 @@ const Tarjeta = ({pet}) => {
    useEffect(()=>{
       getPetLost();
     },[]);
+    
     console.log(petLost)
     const busqueda = (IdMas)=>{
       let valor = true;
