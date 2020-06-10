@@ -14,16 +14,15 @@ const Tarjeta = ({pet}) => {
 
     //Extraer mascota de state inicial  
     const PetContext = useContext(petContext);
-    const { deletPet, setCurrentPet,getPetLost } = PetContext;
+    const { deletPet, setCurrentPet } = PetContext;
 
     //Extraer mascota perdida ------------------------------------------------------------------------
    const PetLostContext = useContext(petLostContext);
-   const { petLost } = PetLostContext;  
+   const { petLost, getPetLost } = PetLostContext;  
 
    useEffect(()=>{
       getPetLost();
     },[]);
-    
     console.log(petLost)
     const busqueda = (IdMas)=>{
       let valor = true;
