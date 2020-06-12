@@ -2,6 +2,7 @@ import {
     ADD_PET,
     PET_ERROR,
     GET_PET,
+    GET_PET_Actual,
     UPDATE_PET,
     DELET_PET,
     CURRENT_PET

@@ -12,11 +12,11 @@ import {
 
 const PetLostState = props => {
     
-    const initialState = {
+    const InitialState = {
         petLost : []
     } 
  
-    const [state, dispatch] = useReducer(PetLostReducer, initialState);
+    const [state, dispatch] = useReducer(PetLostReducer, InitialState);
 
     //Funcion para agregar un mascota reportada como perdida
     const addPetLost = async petLost => {
@@ -36,6 +36,7 @@ const PetLostState = props => {
     const getPetLost = async ()=> {
         try {
             const result = await clienteAxios.get('/api/petlost')
+            //console.log(result.data.petLost);
             dispatch({
                 type: GET_PETLOST,
                 payload: result.data.petLost

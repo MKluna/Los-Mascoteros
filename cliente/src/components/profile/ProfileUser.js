@@ -6,7 +6,7 @@ import AuthContext from '../../context/authentication/authContext';
 import '../../profile-user.css';
 import PetContext from '../../context/pets/PetContext';
 import AlertContext from '../../context/alert/alertContext';
-import petLostContext from "../../context/petLost/PetLostContext";
+
 const ProfileUser = () => {
 
     // Extraer informacion de Autenticacion
@@ -17,24 +17,18 @@ const ProfileUser = () => {
     const petContext = useContext(PetContext);
     const { pets, getPet } = petContext;
 
-   //Extraer mascota de state inicial  ------------------------------------------------------------------------
-   const PetLostContext = useContext(petLostContext);
-   const { petLost, getPetLost } = PetLostContext;  
-   
-//    console.log(petLost);
-//    console.log(pets);
-    
-   const alertContext = useContext(AlertContext);
+    const alertContext = useContext(AlertContext);
 	const { alert } = alertContext;
 
     useEffect(()=> {
         userAuthenticate();
         getPet();
-        getPetLost();
-        //eslint-disable-next-line
     },[]);
 
-    
+    // console.log('Miren',user)
+    // console.log('mascotas',pets)
+    // console.log(user)
+    // console.log(pets)
     return (
         <Fragment>
             <NavBar />

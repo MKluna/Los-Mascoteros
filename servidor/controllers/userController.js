@@ -56,7 +56,7 @@ exports.createUsers = async (req,res) => {
         user.password = await bcryptjs.hash(password,salt);
 
         await user.save();
-        res.send('Usuario Creado Correctamente');
+        //res.send('Usuario Creado Correctamente');
 
         //Crear y firmar JWT
         //Crear JWT

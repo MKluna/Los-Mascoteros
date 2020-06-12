@@ -10,7 +10,6 @@ export default (state,action) => {
             return{
                 ...state,
                 // petLost: [...state.petLost, action.payload]
-                //petLost: [...state.petLost, action.payload]
             };
         case GET_PETLOST:
             return{
