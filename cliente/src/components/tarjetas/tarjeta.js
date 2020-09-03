@@ -62,8 +62,7 @@ const Tarjeta = ({pet}) => {
     return (
       <div className="contedor-app align-top">
         <div className="card modal-sm">
-        {image ? (<img src={`${process.env.REACT_APP_BACKEND_URL}/${image}`} className="card-img-top modal-sm" alt="Se Supone que aca va una imagen"/>): <img src="https://bucket1.glanacion.com/anexos/fotos/02/2749002w380.jpg" className="card-img-top modal-sm" alt="Se Supone que aca va una imagen" />}
-          
+        {image === 'empty' ? <img src="https://bucket1.glanacion.com/anexos/fotos/02/2749002w380.jpg" className="card-img-top modal-sm" alt="Se Supone que aca va una imagen" />:<img src={`${process.env.REACT_APP_BACKEND_URL}/${image}`} className="card-img-top modal-sm" alt="Se Supone que aca va una imagen"/>}  
           <div className="card-body">
             <h5 className="card-title">Nombre : {name}</h5>
             <p className="card-text">
