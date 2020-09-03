@@ -1,7 +1,6 @@
 import {
     ADD_PETLOST,
     GET_PETLOST,
-    DELETE_PETLOST
 } from '../../types/index'
 
 export default (state,action) => {

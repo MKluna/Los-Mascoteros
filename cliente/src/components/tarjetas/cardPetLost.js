@@ -4,17 +4,14 @@ import PetContext from '../../context/pets/PetContext';
 const CardPetLost = ({pet}) => {
 
     const petContext = useContext(PetContext);
-    const {pets,getPetLost} = petContext;
+    const {getPetLost} = petContext;
 
     const {_id,name,ubication,reward,telefon,dateLost}= pet
 
     useEffect(()=> {
         getPetLost(_id);
     },[])
-    
-    console.log(pets)
-    //console.log(_id)
-    //console.log(pet);
+
     return (  
         <div className="contedor-app align-top">
             <div className="card modal-sm">

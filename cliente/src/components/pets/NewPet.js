@@ -47,7 +47,6 @@ const NewPet = props => {
 	};
 
 	const onChangeImage = e => {
-		//console.log(e.target.files);
 		setImage(
 			e.target.files[0]
 		)

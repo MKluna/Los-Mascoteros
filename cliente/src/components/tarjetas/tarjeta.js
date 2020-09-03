@@ -23,23 +23,16 @@ const Tarjeta = ({pet}) => {
    useEffect(()=>{
       getPetLost();
     },[]);
-    console.log(petLost)
     const busqueda = (IdMas)=>{
       let valor = true;
       petLost.map((petLo)=>{
-        console.log(petLo)
         if(petLo.pet==IdMas.numeroID){
-          console.log(false)
           valor=false;
         }
       })
       return valor
     }
 
-
-
-    // console.log(image);
- 
     const onClikEliminar = () => {
       Swal.fire({
         title: '¿Estas seguro de eliminar tu mascota?',
@@ -65,7 +58,7 @@ const Tarjeta = ({pet}) => {
     const selectPet = (pet) => {
       setCurrentPet(pet);
     };
-    // console.log(numeroID)
+
     return (
       <div className="contedor-app align-top">
         <div className="card modal-sm">

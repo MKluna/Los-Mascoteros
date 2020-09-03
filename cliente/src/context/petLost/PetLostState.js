@@ -6,7 +6,6 @@ import clienteAxios from '../../config/axios';
 import {
     ADD_PETLOST,
     GET_PETLOST,
-    DELETE_PETLOST
 } from '../../types';
 
 
@@ -20,7 +19,6 @@ const PetLostState = props => {
 
     //Funcion para agregar un mascota reportada como perdida
     const addPetLost = async petLost => {
-        console.log(petLost)
         try {
             const result = await clienteAxios.post('api/petlost',petLost);
             dispatch({
@@ -36,7 +34,6 @@ const PetLostState = props => {
     const getPetLost = async ()=> {
         try {
             const result = await clienteAxios.get('/api/petlost')
-            //console.log(result.data.petLost);
             dispatch({
                 type: GET_PETLOST,
                 payload: result.data.petLost

@@ -28,7 +28,6 @@ const Form_petLost = (props) => {
     })
     
     const {ubication, reward, telefon, dateLost} = petLostState
-    //console.log(pet);
 
     const onChange = e => {
         setPetLost({

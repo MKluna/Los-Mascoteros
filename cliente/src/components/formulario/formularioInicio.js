@@ -11,8 +11,6 @@ const FormularioInicio = () => {
         getPetLost();
     },[])
 
-    //console.log(petLost)
-    //console.log(petLost[0]);
     return ( 
         <form className="col-12">
             <fieldset className="text-center">

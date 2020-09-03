@@ -6,7 +6,6 @@ import {
     ADD_PET,
     PET_ERROR,
     GET_PET,
-    GET_PET_Actual, 
     DELET_PET,
     UPDATE_PET,
     CURRENT_PET
@@ -30,7 +29,6 @@ const PetState = props => {
                     'Content-Type' : 'multipart/form-data'
                 }
             });
-            console.log(result.data);
             dispatch({
                 type: ADD_PET,
                 payload: result.data
@@ -50,7 +48,6 @@ const PetState = props => {
     const getPet = async () => {
         try {
             const result = await clienteAxios.get('/api/pet');
-            // console.log(result);
             dispatch({
                 type: GET_PET,
                 payload:result.data.mascotas
@@ -90,7 +87,6 @@ const PetState = props => {
     const updatePet = async pet => {
         try {
             const result = await clienteAxios.put(`/api/pet/${pet._id}`, pet);
-            console.log(result);
             dispatch({
                 type: UPDATE_PET,
                 payload: result.data.petExist
@@ -111,9 +107,7 @@ const PetState = props => {
     //Obtengo las mascotas que fueron reportadas como perdidas
     const getPetLost = async (id) => {
         try {
-            //console.log(id)
             const result = await clienteAxios.get(`/api/pet/lost/${id}`);
-            console.log(result);
             dispatch({
                 type: GET_PET,
                 payload: result.data.petLost

@@ -39,12 +39,8 @@ exports.addPet = async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
     //esto agregue para saber si el content-type del headers es multipart/form-data    
-    // console.log(req.headers);
     //crea una mascota
     let pet = new Pet(req.body);
-
-    console.log(req.body);
-    console.log(req.file);
 
     try {
         if (req.file === undefined || null) 
@@ -90,9 +86,7 @@ exports.getPet = async (req, res) => {
 //obtener mascota que se reporto como perdidad
 exports.getPetLost = async (req,res) => {
     try {
-        //console.log(req.params.id);
         const petLost = await Pet.find({_id:req.params.id});
-        console.log(petLost)
         res.json({petLost});
     } catch (error) {
         console.log(error);
