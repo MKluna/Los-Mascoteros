@@ -1,15 +1,39 @@
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext ,useEffect } from 'react';
+import NavBar from '../layout/nav';
+import Tarjeta from '../tarjetas/tarjeta';
+import { Link } from 'react-router-dom';
 import AuthContext from '../../context/authentication/authContext';
 import '../../profile-user.css';
+import PetContext from '../../context/pets/PetContext';
+import AlertContext from '../../context/alert/alertContext';
 
 const ProfileUser = () => {
 
     // Extraer informacion de Autenticacion
     const authContext = useContext(AuthContext);
-    const { user } = authContext;
-    
+    const { user, userAuthenticate } = authContext;
+
+
+    const petContext = useContext(PetContext);
+    const { pets, getPet } = petContext;
+
+    const alertContext = useContext(AlertContext);
+	const { alert } = alertContext;
+
+    useEffect(()=> {
+        userAuthenticate();
+        getPet();
+        //eslint-disable-next-line
+    },[]);
+
+    // console.log('Miren',user)
+    // console.log('mascotas',pets)
+    // console.log(user)
+    // console.log(pets)
     return (
         <Fragment>
+            <NavBar />
+            { alert ? (<div className={`alerta ${alert.category}`}>{alert.msg}</div>) : null }
             <div className="imagen-portada">
                 <img src="https://images.wallpapersden.com/image/wxl-bojack-horseman-season-1_68702.jpg"
                     className=""
@@ -27,7 +51,7 @@ const ProfileUser = () => {
                         />
                     </div>
                     <div>
-                        <h2>Bojack Horseman</h2>
+                        {user === null ? null : (<h2>{user.name}</h2>)}
                         <p>Pequeña descripcion que se yo</p>
                     </div>
                 </div>
@@ -36,37 +60,19 @@ const ProfileUser = () => {
                     {/* listado de mascotas */}
                     <div className="text-center">
                         <h1>Mis Mascotas</h1>
-                        <a href="#" className="btn btn-agregar"
+                        <Link to={'/new-pet'} className="btn-profile btn-agregar"
                             >+ Agregar Nueva Mascota
-                        </a>
+                        </Link>
                     </div>
                     
-                    <div class="card-deck">
-  <div class="card">
-    <img src="..." class="card-img-top" alt="..."/>
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
-  <div class="card">
-    <img src="..." class="card-img-top" alt="..."/>
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
-  <div class="card">
-    <img src="..." class="card-img-top" alt="..."/>
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
-</div>
+                    <div className="card-deck">
+                        {pets.map(pet =>(
+                            <Tarjeta 
+                                key={pet._id}
+                                pet={pet}
+                            /> 
+                        ))} 
+                    </div>
     
                 </div>
             </div>

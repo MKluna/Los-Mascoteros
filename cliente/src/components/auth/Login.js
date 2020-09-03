@@ -1,32 +1,38 @@
-import React,{useState, useEffect, useContext} from 'react';
+import React,{ useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/authentication/authContext';
 
+
 const Login = props => {
+
 	const alertContext = useContext(AlertContext);
 	const { alert, showAlert } = alertContext;
 
 	const authContext = useContext(AuthContext);
-    const { message, authenticated, login } = authContext;
+	const { message, login, authenticated } = authContext;
+
+	const token = localStorage.getItem('token');
+
+	useEffect(() => {
+		
+		if (token) {
+			props.history.push('/inicio');
+		}
+
+        if(message) {
+            showAlert(message.msg, message.category);
+		}
+		
+		//eslint-disable-next-line
+	}, [message, authenticated, props.history]);
 	
-    const [user, setUser] = useState({
+	const [user, setUser] = useState({
     	email:'',
        	password:''
    	});
 
 	const {email, password} = user;
-	  
-	useEffect(() => {
-		if(authenticated) {
-            props.history.push('/inicio');
-        }
-
-        if(message) {
-            showAlert(message.msg, message.category);
-        }
-        // eslint-disable-next-line
-    }, [message, authenticated, props.history]);
 	
   	const handleChange = e => 
   	{
@@ -36,25 +42,22 @@ const Login = props => {
     	});
   	};
 
-  	//Cuando el usuario quiere iniciar sesion
   	const handleSubmit = e => {
       	e.preventDefault();
 
-		//Validar Campos vacions
 		if(email.trim() === '' || password.trim() === '') {
-            showAlert('Todos los campos son obligatorios', 'alerta-error');
+			showAlert('Todos los campos son obligatorios', 'alerta-error');
+			return;
 		}
 		
-		//Pasarlo al Action
 		login({ email, password });
 	};
 
-
 	return (
 		<div className="form-usuario">
-			{ alert ? ( <div className={`alerta ${alert.categoria}`}>{ alert.msg }</div> ) : null }
+			{ alert ? ( <div className={`alerta ${alert.category}`}>{ alert.msg }</div> ) : null }
 			<div className="contenedor-form sombra-dark">
-				<h1>Iniciar Sesión</h1>
+				<h1 className="mb-5">INICIAR SESIÓN</h1>
 				<form
 				onSubmit={handleSubmit}
 				>

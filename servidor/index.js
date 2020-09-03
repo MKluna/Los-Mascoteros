@@ -11,6 +11,7 @@ app.use( express.json({ extended: true }));
 
 const port = process.env.PORT || 4000;
 
+app.use(express.static(__dirname + '/uploads/imagePet'));
 app.use('/api/users',require('./routes/users'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/pet', require('./routes/pet'));

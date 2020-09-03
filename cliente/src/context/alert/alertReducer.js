@@ -1,19 +1,19 @@
-import { SHOW_ALERT,
-        HIDE_ALERT
-}from '../../types';
+import { 
+    SHOW_ALERT,
+    HIDE_ALERT
+} from '../../types';
 
 export default (state,action) => {
-    switch(action.type){
+    switch (action.type) {
         case SHOW_ALERT:
-            return{
-                alerta: action.payload
-            }
+            return {
+                alert: action.payload
+            };
         case HIDE_ALERT:
-            return{
-                alerta:null
-            }
+            return {
+                alert: null
+            };
          default:
-             return state;
-
+                return state;
     }
-}
+};

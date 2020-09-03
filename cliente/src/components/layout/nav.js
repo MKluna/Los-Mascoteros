@@ -1,6 +1,10 @@
-import React,{Fragment} from 'react';
+import React,{Fragment,useContext} from 'react';
+import {Link} from 'react-router-dom';
+import AuthContext from '../../context/authentication/authContext';
 
 const NavBar = () => {
+    const authContext = useContext(AuthContext);
+    const {logout} = authContext;
     return ( 
         <Fragment>
             <nav className="navbar navbar-dark bg-dark">
@@ -8,9 +12,12 @@ const NavBar = () => {
                     <header className="header-nav">Los Macoteros</header>
                 </div>
                 <div className="div-nav">
-                    <button className="btn btn-info" type="submit">Perfil</button>
-                    <button className="btn btn-primary " type="submit">Inicio</button>
-                    <button className="btn btn-danger " type="submit">Cerrar Sesion</button>
+                    <Link to={'/profile-user'} className="btn btn-info">Perfil</Link>
+                    <Link to={'/inicio'} className="btn btn-primary ">Inicio</Link>
+                    <button 
+                        className="btn btn-danger " 
+                        onClick={()=> logout()}
+                    >Cerrar Sesion</button>
                 </div>
             </nav>
         </Fragment>
